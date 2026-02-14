@@ -1,4 +1,4 @@
-const DASHBOARD_DATA = [
+window.DASHBOARD_DATA = [
   {
     classroom: "1/1",
     building: "المبنى الرئيسي",
