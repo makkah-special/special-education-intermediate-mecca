@@ -5,13 +5,96 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>مدرسة مكة المكرمة المتوسطة | بوابة التربية الخاصة</title>
 
-  <meta name="description" content="بوابة برامج التربية الخاصة في مدرسة مكة المكرمة المتوسطة: الإعاقة العقلية وبرنامج يسير التعليمي، مع نماذج وخطط جاهزة." />
-  <meta name="keywords" content="مدرسة مكة المكرمة المتوسطة, التربية الخاصة, الإعاقة العقلية, برنامج يسير التعليمي, خطط IEP" />
+  <meta name="description" content="بوابة برامج التربية الخاصة في مدرسة مكة المكرمة المتوسطة: الإعاقة العقلية وبرنامج يسير التعليمي." />
+  <meta name="keywords" content="مدرسة مكة المكرمة المتوسطة, التربية الخاصة, الإعاقة العقلية, برنامج يسير التعليمي" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
+
+  <!-- إضافة بسيطة فقط للإحصائيات (بدون تغيير تصميمك) -->
+  <style>
+    /* ===== Stats Strip (Bottom) ===== */
+    .stats-strip{
+      padding: 10px 0 28px;
+    }
+    .stats-strip .section-head{
+      margin-bottom: 12px;
+    }
+    .stats-strip .section-head h2{
+      font-size: 18px;
+    }
+    .stats-grid{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .s-card{
+      grid-column: span 3;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .s-left{
+      display:flex;
+      flex-direction:column;
+      gap: 4px;
+      min-width: 0;
+    }
+    .s-num{
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .s-label{
+      font-size: 13px;
+      color: rgba(255,255,255,.70);
+      line-height: 1.6;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s-ic{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      flex: 0 0 auto;
+      font-size: 20px;
+    }
+
+    .s-wide{
+      grid-column: span 12;
+      align-items:flex-start;
+    }
+    .s-wide .s-label{
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+    }
+    .s-wide .s-num{
+      font-size: 20px;
+    }
+
+    @media (max-width: 900px){
+      .s-card{ grid-column: span 6; }
+      .s-wide{ grid-column: span 12; }
+    }
+    @media (max-width: 560px){
+      .s-card{ grid-column: span 12; }
+    }
+  </style>
 </head>
 
 <body>
@@ -45,7 +128,7 @@
 
           <div class="hero-actions">
             <a class="btn primary" href="#programs">استعراض البرامج</a>
-            <a class="btn ghost" href="#iep">النماذج</a>
+            <!-- تم حذف زر "النماذج" لأننا ألغينا قسم IEP من الرئيسية -->
           </div>
 
           <div class="stats">
@@ -54,8 +137,8 @@
               <div class="stat-label">برامج رئيسية</div>
             </div>
             <div class="stat">
-              <div class="stat-num">4</div>
-              <div class="stat-label">نماذج IEP</div>
+              <div class="stat-num">42</div>
+              <div class="stat-label">إجمالي الطلاب</div>
             </div>
           </div>
         </div>
@@ -69,7 +152,7 @@
               <span class="ic">🧠</span>
               <span>
                 <b>الإعاقة العقلية</b>
-                <small>خدمات وتعريف ونماذج</small>
+                <small>خدمات وتعريف وإرشادات</small>
               </span>
               <span class="arr">‹</span>
             </a>
@@ -125,47 +208,57 @@
       </div>
     </section>
 
-    <!-- IEP -->
-    <section class="section" id="iep">
+    <!-- ✅ إحصائيات القسم (أسفل الصفحة بهيدر صغير) -->
+    <section class="section stats-strip" id="stats">
       <div class="container">
         <div class="section-head">
-          <h2>نماذج وخطط (IEP)</h2>
-          <p>تحميل مباشر للملفات بصيغة PDF.</p>
+          <h2>إحصاءات القسم</h2>
+          <p>ملخص سريع لأعداد الطلاب والكوادر داخل برامج التربية الخاصة.</p>
         </div>
 
-        <div class="download-list">
+        <div class="stats-grid">
 
-          <a class="download" href="iep-math-level1-2026.pdf" target="_blank">
-            <span class="dl-ic">📄</span>
-            <span>
-              <b>رياضيات المستوى الأول 2026</b>
-            </span>
-            <span class="dl-go">فتح</span>
-          </a>
+          <div class="s-card">
+            <div class="s-left">
+              <div class="s-num">21</div>
+              <div class="s-label">عدد طلاب الإعاقة العقلية</div>
+            </div>
+            <div class="s-ic">🧠</div>
+          </div>
 
-          <a class="download" href="iep-math-level2-2026.pdf" target="_blank">
-            <span class="dl-ic">📄</span>
-            <span>
-              <b>رياضيات المستوى الثاني 2026</b>
-            </span>
-            <span class="dl-go">فتح</span>
-          </a>
+          <div class="s-card">
+            <div class="s-left">
+              <div class="s-num">21</div>
+              <div class="s-label">عدد طلاب برنامج يسير</div>
+            </div>
+            <div class="s-ic">📘</div>
+          </div>
 
-          <a class="download" href="iep-arabic-level1-2026.pdf" target="_blank">
-            <span class="dl-ic">📄</span>
-            <span>
-              <b>لغتي المستوى الأول 2026</b>
-            </span>
-            <span class="dl-go">فتح</span>
-          </a>
+          <div class="s-card">
+            <div class="s-left">
+              <div class="s-num">6</div>
+              <div class="s-label">معلمي الإعاقة العقلية</div>
+            </div>
+            <div class="s-ic">👩‍🏫</div>
+          </div>
 
-          <a class="download" href="iep-arabic-level2-2026.pdf" target="_blank">
-            <span class="dl-ic">📄</span>
-            <span>
-              <b>لغتي المستوى الثاني 2026</b>
-            </span>
-            <span class="dl-go">فتح</span>
-          </a>
+          <div class="s-card">
+            <div class="s-left">
+              <div class="s-num">2</div>
+              <div class="s-label">معلمي برنامج يسير</div>
+            </div>
+            <div class="s-ic">👨‍🏫</div>
+          </div>
+
+          <div class="s-card s-wide">
+            <div class="s-left">
+              <div class="s-num">كوادر مساندة</div>
+              <div class="s-label">
+                1 معلم تربية فنية • 1 موجه طلابي • 1 إداري تربية خاصة • مدير المدرسة • وكيل المدرسة
+              </div>
+            </div>
+            <div class="s-ic">🏫</div>
+          </div>
 
         </div>
       </div>
@@ -174,7 +267,7 @@
   </main>
 
   <footer style="text-align:center;padding:20px;color:rgba(255,255,255,.5)">
-    © 2026 مدرسة مكة المكرمة المتوسطة
+    © 2026  إعداد وتنفيذ أ. سعد الزهراني                 مدرسة مكة المكرمة المتوسطة
   </footer>
 
 </body>
