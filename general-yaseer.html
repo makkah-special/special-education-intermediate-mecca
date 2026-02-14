@@ -3,121 +3,183 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>لوحة فصول التعليم العام — تشخيص طلاب يسير</title>
-  <meta name="description" content="لوحة تفاعلية لفصول التعليم العام وتشخيص طلاب يسير" />
+  <title>لوحة التعليم العام – متابعة برنامج يسير | مدرسة مكة المكرمة المتوسطة</title>
+  <meta name="description" content="لوحة متابعة تفاعلية لبرنامج يسير في فصول التعليم العام مع وضع عرض فقط للزوار ووضع تعديل محمي بكلمة مرور." />
 
   <style>
     :root{
-      --bg1:#0b1220;
-      --bg2:#0a1a2b;
+      --bg:#0b1220;
       --card:rgba(255,255,255,.06);
       --stroke:rgba(255,255,255,.10);
       --text:#eaf2ff;
-      --muted:rgba(234,242,255,.70);
-      --good:#22c55e;
-      --gray:#94a3b8;
+      --muted:rgba(234,242,255,.72);
       --shadow:0 18px 60px rgba(0,0,0,.35);
-      --radius:18px;
+      --radius:22px;
+      --ok: rgba(34,197,94,.85);
+      --warn: rgba(245,158,11,.85);
+      --blue: rgba(59,130,246,.85);
+      --purple: rgba(124,92,255,.85);
+      --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Tahoma, Arial;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial;
+      font-family:var(--font);
       color:var(--text);
-      background: radial-gradient(1200px 500px at 20% 10%, rgba(59,130,246,.25), transparent 60%),
-                  radial-gradient(1000px 600px at 80% 0%, rgba(34,197,94,.18), transparent 55%),
-                  linear-gradient(160deg,var(--bg1),var(--bg2));
+      background:
+        radial-gradient(1200px 500px at 20% 10%, rgba(59,130,246,.25), transparent 60%),
+        radial-gradient(1000px 600px at 80% 0%, rgba(34,197,94,.18), transparent 55%),
+        linear-gradient(160deg, #0b1220, #071022);
       min-height:100vh;
     }
-    header{
-      padding:22px 16px 10px;
-      max-width:1200px;
-      margin:0 auto;
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 34px}
+
+    /* Top */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
     }
-    h1{
-      margin:0 0 10px;
-      font-size:20px;
-      line-height:1.4;
+    .brand{
+      display:flex;align-items:center;gap:12px;
     }
-    .sub{
+    .logo{
+      width:56px;height:56px;border-radius:16px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.05);
+      display:grid;place-items:center;overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .logo img{width:100%;height:100%;object-fit:contain;padding:10px}
+    .title{margin:0;font-size:18px;line-height:1.4}
+    .sub{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.7}
+
+    /* Card */
+    .panel{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px;
+      overflow:hidden;
+    }
+    .panelHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .panelHead h1{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .panelHead p{
+      margin:6px 0 0;
       color:var(--muted);
-      margin:0 0 14px;
       font-size:13px;
       line-height:1.7;
     }
 
-    .topbar{
-      display:flex; gap:10px; flex-wrap:wrap;
+    /* Admin Bar */
+    .adminBar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
       align-items:center;
-      margin:12px 0 16px;
-    }
-    .btn{
+      justify-content:space-between;
+      padding:12px;
+      border-radius:18px;
       border:1px solid var(--stroke);
-      background:linear-gradient(135deg, rgba(59,130,246,.25), rgba(34,197,94,.18));
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:14px;
-      cursor:pointer;
-      box-shadow: var(--shadow);
-      font-weight:900;
-      font-size:13px;
-      text-decoration:none;
+      background:rgba(255,255,255,.04);
+      margin-bottom:12px;
+    }
+    .modeTag{
       display:inline-flex;
       align-items:center;
       gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.04);
+      font-weight:800;
+      font-size:12px;
+      color:rgba(234,242,255,.85);
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(59,130,246,.28), rgba(124,92,255,.18));
+      color:var(--text);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
     }
     .btn.secondary{
       background: rgba(255,255,255,.06);
-      box-shadow:none;
     }
-    .wrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:0 16px 26px;
+    .btn.danger{
+      background: rgba(239,68,68,.18);
     }
-    .cards{
+    .hint{
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.7;
+    }
+
+    /* Summary */
+    .summary{
       display:grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
+      grid-template-columns: repeat(12, 1fr);
       gap:12px;
-      margin:12px 0 18px;
+      margin-bottom:12px;
     }
-    @media (max-width: 980px){ .cards{grid-template-columns: repeat(2, minmax(0,1fr));} }
-    @media (max-width: 520px){ .cards{grid-template-columns: 1fr;} }
-
-    .card{
-      background: var(--card);
-      border:1px solid var(--stroke);
-      border-radius: var(--radius);
-      padding:14px 14px;
-      box-shadow: var(--shadow);
-    }
-    .k{color:var(--muted); font-size:12px; margin-bottom:6px}
-    .v{font-size:22px; font-weight:1000}
-
-    .filters{
-      display:flex; flex-wrap:wrap; gap:10px;
-      align-items:center;
-      margin: 6px 0 12px;
-    }
-    select, input[type="text"], input[type="number"]{
-      background: rgba(255,255,255,.06);
+    .kpi{
+      grid-column: span 3;
+      background: rgba(0,0,0,.10);
       border: 1px solid var(--stroke);
-      color: var(--text);
-      padding:10px 12px;
-      border-radius: 14px;
-      outline:none;
-      font-weight:800;
-      font-size:13px;
+      border-radius: 18px;
+      padding: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
-    select{cursor:pointer}
-    input::placeholder{color: rgba(234,242,255,.55)}
-
-    .tableWrap{
-      background: var(--card);
+    .kpi .num{font-size:24px;font-weight:1000;line-height:1}
+    .kpi .lab{color:var(--muted);font-size:13px;line-height:1.6}
+    .kpi .ic{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
       border:1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      background:rgba(255,255,255,.06);
+      font-size:20px;
+      flex:0 0 auto;
+    }
+    .kpi.blue .num{color:var(--blue)}
+    .kpi.ok .num{color:var(--ok)}
+    .kpi.warn .num{color:var(--warn)}
+    .kpi.purple .num{color:var(--purple)}
+    @media (max-width: 900px){ .kpi{grid-column: span 6;} }
+    @media (max-width: 560px){ .kpi{grid-column: span 12;} }
+
+    /* Table */
+    .tableWrap{
+      border:1px solid var(--stroke);
+      border-radius: 18px;
       overflow:hidden;
+      background:rgba(0,0,0,.10);
     }
     table{
       width:100%;
@@ -127,429 +189,354 @@
     thead th{
       text-align:right;
       padding:12px 12px;
-      color:var(--muted);
-      background: rgba(255,255,255,.03);
+      background:rgba(255,255,255,.05);
       border-bottom:1px solid var(--stroke);
-      position:sticky;
-      top:0;
-      z-index:2;
+      color: rgba(234,242,255,.9);
+      font-weight:900;
     }
     tbody td{
       padding:10px 12px;
       border-bottom:1px solid rgba(255,255,255,.06);
       vertical-align:middle;
     }
-    tbody tr:hover{ background: rgba(255,255,255,.03); }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      padding:6px 10px;
-      border-radius: 999px;
-      border:1px solid var(--stroke);
-      font-weight:900;
-      font-size:12px;
-      white-space:nowrap;
+    tbody tr:hover td{
+      background:rgba(255,255,255,.03);
     }
-    .dot{
-      width:9px; height:9px; border-radius:50%;
-      background: var(--gray);
-      box-shadow: 0 0 0 3px rgba(148,163,184,.12);
-    }
-    tr.hasYaseer .dot{ background: var(--good); box-shadow:0 0 0 3px rgba(34,197,94,.18); }
-    tr.hasYaseer .badge{ border-color: rgba(34,197,94,.35); }
-    tr.noYaseer .badge{ border-color: rgba(148,163,184,.35); color: rgba(234,242,255,.78); }
+    .colClass{width:42%}
+    .colNum{width:19%}
+    .colTotal{width:20%}
 
-    .cellInput{ width: 92px; max-width: 120px; }
+    input[type="number"], input[type="text"]{
+      width:100%;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      outline:none;
+      font-weight:800;
+      font-size:13px;
+    }
+    input[type="number"]{text-align:center}
+    input[disabled]{
+      opacity:.65;
+      cursor:not-allowed;
+    }
+
+    .rowTotal{
+      font-weight:1000;
+      text-align:center;
+      color: rgba(234,242,255,.9);
+    }
 
     .footer{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:12px;
+      margin-top:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color: rgba(234,242,255,.55);
+      font-size:12px;
+      line-height:1.8;
     }
-    @media (max-width: 980px){ .footer{grid-template-columns:1fr;} }
-
-    .miniTitle{
-      margin:0 0 10px;
-      color:var(--muted);
-      font-size:13px;
-      font-weight:1000;
-    }
-    .list{ display:flex; flex-direction:column; gap:8px; }
-    .row{
-      display:flex; justify-content:space-between; gap:10px;
-      padding:10px 12px;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius: 14px;
-      font-weight:900;
-    }
-    .row span:first-child{color:rgba(234,242,255,.85)}
-    .row span:last-child{color:var(--text); font-weight:1000}
 
     .note{
-      margin-top:12px;
-      color:rgba(234,242,255,.55);
-      font-size:12px;
-      line-height:1.7;
-    }
-    .tiny{
-      color:rgba(234,242,255,.55);
-      font-size:12px;
       margin-top:10px;
-      text-align:center;
+      color: rgba(234,242,255,.65);
+      font-size:12.5px;
+      line-height:1.8;
+      padding:12px;
+      border-radius:18px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>لوحة فصول التعليم العام — تشخيص طلاب يسير</h1>
-    <p class="sub">عدّل الأرقام داخل الجدول، ثم اضغط “تحديث البيانات” عشان الإحصائيات فوق وتحت تتحدث بدقة.</p>
+  <div class="wrap">
 
     <div class="topbar">
-      <a class="btn secondary" href="index.html">⬅️ رجوع للرئيسية</a>
-      <button class="btn" id="btnRefresh">تحديث البيانات</button>
-      <button class="btn secondary" id="btnReset">إعادة ضبط (يمسح أرقامك)</button>
+      <div class="brand">
+        <div class="logo" title="شعار المدرسة">
+          <img src="school-logo.png" alt="شعار المدرسة">
+        </div>
+        <div>
+          <h2 class="title">لوحة التعليم العام – متابعة برنامج يسير</h2>
+          <p class="sub">عرض فقط للزوار — التعديل متاح للمسؤول بكلمة مرور</p>
+        </div>
+      </div>
+
+      <a class="btn secondary" href="index.html">⬅︎ الرجوع للرئيسية</a>
     </div>
-  </header>
 
-  <main class="wrap">
+    <section class="panel">
+      <div class="panelHead">
+        <div>
+          <h1>📊 لوحة المتابعة</h1>
+          <p>سجّل أعداد طلاب برنامج يسير في فصول التعليم العام + (بانتظار التشخيص) مع حساب الإجمالي تلقائيًا.</p>
+        </div>
+      </div>
 
-    <section class="cards" aria-label="إحصائيات أعلى الصفحة">
-      <div class="card">
-        <div class="k">عدد الفصول</div>
-        <div class="v" id="statClasses">—</div>
+      <!-- Admin Bar -->
+      <div class="adminBar">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <span class="modeTag" id="modeTag">🔒 الوضع: عرض فقط</span>
+          <span class="hint" id="saveHint">يتم حفظ البيانات تلقائيًا على نفس الجهاز.</span>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <button class="btn" id="unlockBtn">🔑 تفعيل التعديل</button>
+          <button class="btn secondary" id="lockBtn" style="display:none;">✅ قفل اللوحة</button>
+          <button class="btn danger" id="resetBtn" style="display:none;">🧹 تصفير البيانات</button>
+        </div>
       </div>
-      <div class="card">
-        <div class="k">مجموع طلاب يسير</div>
-        <div class="v" id="statYaseer">—</div>
+
+      <!-- Summary -->
+      <div class="summary" aria-label="ملخص">
+        <div class="kpi blue">
+          <div>
+            <div class="num" id="kpiClasses">0</div>
+            <div class="lab">عدد الفصول المسجلة</div>
+          </div>
+          <div class="ic">🏫</div>
+        </div>
+
+        <div class="kpi ok">
+          <div>
+            <div class="num" id="kpiYaseer">0</div>
+            <div class="lab">إجمالي طلاب يسير</div>
+          </div>
+          <div class="ic">📘</div>
+        </div>
+
+        <div class="kpi warn">
+          <div>
+            <div class="num" id="kpiPending">0</div>
+            <div class="lab">بانتظار التشخيص</div>
+          </div>
+          <div class="ic">⏳</div>
+        </div>
+
+        <div class="kpi purple">
+          <div>
+            <div class="num" id="kpiAll">0</div>
+            <div class="lab">إجمالي (يسير + انتظار)</div>
+          </div>
+          <div class="ic">📌</div>
+        </div>
       </div>
-      <div class="card">
-        <div class="k">بانتظار التشخيص</div>
-        <div class="v" id="statPending">—</div>
+
+      <!-- Table -->
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="colClass">الفصل</th>
+              <th class="colNum">طلاب يسير</th>
+              <th class="colNum">بانتظار التشخيص</th>
+              <th class="colTotal">الإجمالي</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
       </div>
-      <div class="card">
-        <div class="k">إجمالي طلاب الفصول</div>
-        <div class="v" id="statTotal">—</div>
+
+      <div class="note">
+        💡 <b>ملاحظة:</b> “عرض فقط” يمنع العبث من أي زائر. للتعديل افتح وضع التعديل بكلمة المرور ثم اقفل اللوحة بعد الانتهاء.
+      </div>
+
+      <div class="footer">
+        <div>إعداد وتنفيذ: أ. سعد الزهراني</div>
+        <div>© <span id="y"></span> مدرسة مكة المكرمة المتوسطة</div>
       </div>
     </section>
 
-    <section class="filters" aria-label="فلاتر">
-      <select id="filterBuilding">
-        <option value="all">كل المباني</option>
-        <option value="الشمالي">المبنى الشمالي</option>
-        <option value="الجنوبي">المبنى الجنوبي</option>
-        <option value="الرئيسي">المبنى الرئيسي</option>
-      </select>
+  </div>
 
-      <select id="filterGrade">
-        <option value="all">كل الصفوف</option>
-        <option value="أول متوسط">أول متوسط</option>
-        <option value="ثاني متوسط">ثاني متوسط</option>
-        <option value="ثالث متوسط">ثالث متوسط</option>
-      </select>
+  <script>
+    // ✅ غيّر كلمة المرور هنا فقط:
+    const ADMIN_PASS = "Saad-2026";
 
-      <select id="filterHasYaseer">
-        <option value="all">كل الحالات</option>
-        <option value="has">يوجد يسير</option>
-        <option value="none">لا يوجد</option>
-      </select>
+    // ✅ مفتاح التخزين (يضمن حفظ بيانات اللوحة)
+    const STORAGE_KEY = "makkah_special_general_yaseer_v1";
 
-      <input id="searchBox" type="text" placeholder="بحث (مثال: ٣/٥ أو الرئيسي)" />
-    </section>
+    const DEFAULT_ROWS = [
+      { cls: "الصف الأول المتوسط (أ)", yaseer: 0, pending: 0 },
+      { cls: "الصف الأول المتوسط (ب)", yaseer: 0, pending: 0 },
+      { cls: "الصف الثاني المتوسط (أ)", yaseer: 0, pending: 0 },
+      { cls: "الصف الثاني المتوسط (ب)", yaseer: 0, pending: 0 },
+      { cls: "الصف الثالث المتوسط (أ)", yaseer: 0, pending: 0 },
+      { cls: "الصف الثالث المتوسط (ب)", yaseer: 0, pending: 0 }
+    ];
 
-    <section class="tableWrap" aria-label="الجدول">
-      <table>
-        <thead>
-          <tr>
-            <th>الفصل</th>
-            <th>المبنى</th>
-            <th>الصف</th>
-            <th>عدد طلاب يسير</th>
-            <th>بانتظار التشخيص</th>
-            <th>إجمالي عدد الطلاب</th>
-            <th>الحالة</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </section>
+    const els = {
+      tbody: document.getElementById("tbody"),
+      modeTag: document.getElementById("modeTag"),
+      unlockBtn: document.getElementById("unlockBtn"),
+      lockBtn: document.getElementById("lockBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      kpiClasses: document.getElementById("kpiClasses"),
+      kpiYaseer: document.getElementById("kpiYaseer"),
+      kpiPending: document.getElementById("kpiPending"),
+      kpiAll: document.getElementById("kpiAll")
+    };
 
-    <section class="footer" aria-label="إحصائيات أسفل الصفحة">
-      <div class="card">
-        <p class="miniTitle">توزيع المباني (حسب طلاب يسير)</p>
-        <div class="list" id="byBuilding"></div>
-      </div>
+    document.getElementById("y").textContent = new Date().getFullYear();
 
-      <div class="card">
-        <p class="miniTitle">توزيع الصفوف (حسب طلاب يسير)</p>
-        <div class="list" id="byGrade"></div>
-      </div>
-    </section>
+    let editMode = false;
+    let data = loadData();
 
-    <p class="note">
-      • التلوين: إذا “عدد طلاب يسير” &gt; 0 يصير أخضر، وإذا = 0 يصير رمادي.<br>
-      • الإحصائيات تُحسب من القيم الموجودة فعليًا داخل الجدول، لذلك تكون دقيقة.
-    </p>
+    function loadData(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return structuredClone(DEFAULT_ROWS);
+        const parsed = JSON.parse(raw);
+        if(!Array.isArray(parsed) || parsed.length === 0) return structuredClone(DEFAULT_ROWS);
 
-    <div class="tiny">جميع الحقوق محفوظة © <span id="y"></span> — مدرسة مكة المكرمة المتوسطة</div>
-  </main>
-
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-
-  // 1) توليد قائمة الفصول كما طلبت
-  function buildClasses(){
-    const out = [];
-    for(let i=1;i<=8;i++) out.push(`${i}/1`);
-    for(let i=2;i<=8;i++) out.push(`${i}/2`);
-    for(let i=3;i<=8;i++) out.push(`${i}/3`);
-    return out;
-  }
-
-  // 2) إنشاء صفوف افتراضية (تقدر تعدل المبنى/الصف لكل فصل)
-  const DEFAULT_BUILDING = "الرئيسي";
-  const DEFAULT_GRADE = "أول متوسط";
-
-  function makeDefaultRows(){
-    const classes = buildClasses();
-    return classes.map(cls => ({
-      id: cls,
-      className: cls,
-      building: DEFAULT_BUILDING,
-      grade: DEFAULT_GRADE,
-      yaseer: 0,
-      pending: 0,
-      total: 0
-    }));
-  }
-
-  // 3) تخزين/قراءة البيانات
-  const STORAGE_KEY = "general-yaseer-dashboard-v1";
-
-  function loadRows(){
-    try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(!raw) return makeDefaultRows();
-      const parsed = JSON.parse(raw);
-
-      const base = makeDefaultRows();
-      const byId = new Map(parsed.map(r => [r.id, r]));
-      return base.map(r => byId.get(r.id) ? ({...r, ...byId.get(r.id)}) : r);
-    }catch(e){
-      return makeDefaultRows();
+        // تطبيع
+        return parsed.map(r=>({
+          cls: String(r.cls ?? "").trim() || "فصل غير مسمى",
+          yaseer: num(r.yaseer),
+          pending: num(r.pending)
+        }));
+      }catch(e){
+        return structuredClone(DEFAULT_ROWS);
+      }
     }
-  }
 
-  function saveRows(rows){
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(rows));
-  }
-
-  // 4) عناصر الصفحة
-  const tbody = document.getElementById("tbody");
-  const statClasses = document.getElementById("statClasses");
-  const statYaseer = document.getElementById("statYaseer");
-  const statPending = document.getElementById("statPending");
-  const statTotal = document.getElementById("statTotal");
-
-  const filterBuilding = document.getElementById("filterBuilding");
-  const filterGrade = document.getElementById("filterGrade");
-  const filterHasYaseer = document.getElementById("filterHasYaseer");
-  const searchBox = document.getElementById("searchBox");
-
-  const byBuilding = document.getElementById("byBuilding");
-  const byGrade = document.getElementById("byGrade");
-
-  const btnRefresh = document.getElementById("btnRefresh");
-  const btnReset = document.getElementById("btnReset");
-
-  let rows = loadRows();
-
-  // 5) أدوات صغيرة
-  const clampInt = (v) => {
-    const n = Number.parseInt(v,10);
-    return Number.isFinite(n) && n >= 0 ? n : 0;
-  };
-
-  function rowStatus(r){
-    return r.yaseer > 0 ? "has" : "none";
-  }
-
-  function matchesFilters(r){
-    const b = filterBuilding.value;
-    const g = filterGrade.value;
-    const h = filterHasYaseer.value;
-    const s = (searchBox.value || "").trim();
-
-    if(b !== "all" && r.building !== b) return false;
-    if(g !== "all" && r.grade !== g) return false;
-    if(h !== "all" && rowStatus(r) !== h) return false;
-
-    if(s){
-      const hay = `${r.className} ${r.building} ${r.grade}`.toLowerCase();
-      if(!hay.includes(s.toLowerCase())) return false;
+    function saveData(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
-    return true;
-  }
 
-  // 6) رسم الجدول
-  function renderTable(){
-    tbody.innerHTML = "";
-    const visible = rows.filter(matchesFilters);
+    function num(v){
+      const n = Number(v);
+      if(!Number.isFinite(n) || n < 0) return 0;
+      return Math.floor(n);
+    }
 
-    for(const r of visible){
-      const tr = document.createElement("tr");
-      tr.className = (r.yaseer > 0) ? "hasYaseer" : "noYaseer";
+    function render(){
+      els.tbody.innerHTML = "";
+      data.forEach((row, idx)=>{
+        const tr = document.createElement("tr");
 
-      // الفصل
-      const tdClass = document.createElement("td");
-      tdClass.textContent = r.className;
+        const tdClass = document.createElement("td");
+        tdClass.className = "colClass";
+        const clsInput = document.createElement("input");
+        clsInput.type = "text";
+        clsInput.value = row.cls;
+        clsInput.disabled = !editMode;
+        clsInput.addEventListener("input", ()=>{
+          data[idx].cls = clsInput.value;
+          saveData();
+        });
+        tdClass.appendChild(clsInput);
 
-      // المبنى
-      const tdBuilding = document.createElement("td");
-      const selB = document.createElement("select");
-      ["الشمالي","الجنوبي","الرئيسي"].forEach(x=>{
-        const opt = document.createElement("option");
-        opt.value = x;
-        opt.textContent = (x === "الشمالي") ? "المبنى الشمالي" : (x === "الجنوبي") ? "المبنى الجنوبي" : "المبنى الرئيسي";
-        selB.appendChild(opt);
+        const tdY = document.createElement("td");
+        tdY.className = "colNum";
+        const yInput = document.createElement("input");
+        yInput.type = "number";
+        yInput.min = "0";
+        yInput.value = row.yaseer;
+        yInput.disabled = !editMode;
+        yInput.addEventListener("input", ()=>{
+          data[idx].yaseer = num(yInput.value);
+          yInput.value = data[idx].yaseer;
+          saveData();
+          updateKPIs();
+          updateRowTotal(tr, idx);
+        });
+        tdY.appendChild(yInput);
+
+        const tdP = document.createElement("td");
+        tdP.className = "colNum";
+        const pInput = document.createElement("input");
+        pInput.type = "number";
+        pInput.min = "0";
+        pInput.value = row.pending;
+        pInput.disabled = !editMode;
+        pInput.addEventListener("input", ()=>{
+          data[idx].pending = num(pInput.value);
+          pInput.value = data[idx].pending;
+          saveData();
+          updateKPIs();
+          updateRowTotal(tr, idx);
+        });
+        tdP.appendChild(pInput);
+
+        const tdT = document.createElement("td");
+        tdT.className = "colTotal rowTotal";
+        tdT.textContent = String(row.yaseer + row.pending);
+
+        tr.appendChild(tdClass);
+        tr.appendChild(tdY);
+        tr.appendChild(tdP);
+        tr.appendChild(tdT);
+
+        els.tbody.appendChild(tr);
       });
-      selB.value = r.building;
-      selB.onchange = () => { r.building = selB.value; saveRows(rows); updateAll(); };
-      tdBuilding.appendChild(selB);
 
-      // الصف
-      const tdGrade = document.createElement("td");
-      const selG = document.createElement("select");
-      ["أول متوسط","ثاني متوسط","ثالث متوسط"].forEach(x=>{
-        const opt = document.createElement("option");
-        opt.value = x; opt.textContent = x;
-        selG.appendChild(opt);
+      updateKPIs();
+      updateModeUI();
+    }
+
+    function updateRowTotal(tr, idx){
+      const totalCell = tr.querySelector(".rowTotal");
+      if(!totalCell) return;
+      totalCell.textContent = String(num(data[idx].yaseer) + num(data[idx].pending));
+    }
+
+    function updateKPIs(){
+      const classes = data.length;
+      const yaseerSum = data.reduce((a,r)=>a + num(r.yaseer), 0);
+      const pendingSum = data.reduce((a,r)=>a + num(r.pending), 0);
+      els.kpiClasses.textContent = String(classes);
+      els.kpiYaseer.textContent = String(yaseerSum);
+      els.kpiPending.textContent = String(pendingSum);
+      els.kpiAll.textContent = String(yaseerSum + pendingSum);
+    }
+
+    function updateModeUI(){
+      els.modeTag.textContent = editMode ? "🔓 الوضع: تعديل" : "🔒 الوضع: عرض فقط";
+      els.unlockBtn.style.display = editMode ? "none" : "";
+      els.lockBtn.style.display = editMode ? "" : "none";
+      els.resetBtn.style.display = editMode ? "" : "none";
+
+      // تعطيل/تمكين الحقول
+      document.querySelectorAll("input").forEach(inp=>{
+        inp.disabled = !editMode;
       });
-      selG.value = r.grade;
-      selG.onchange = () => { r.grade = selG.value; saveRows(rows); updateAll(); };
-      tdGrade.appendChild(selG);
-
-      // يسير
-      const tdY = document.createElement("td");
-      const inY = document.createElement("input");
-      inY.type = "number"; inY.min = "0"; inY.className = "cellInput";
-      inY.value = r.yaseer;
-      inY.oninput = () => { r.yaseer = clampInt(inY.value); saveRows(rows); updateAll(false); };
-      tdY.appendChild(inY);
-
-      // بانتظار التشخيص
-      const tdP = document.createElement("td");
-      const inP = document.createElement("input");
-      inP.type = "number"; inP.min = "0"; inP.className = "cellInput";
-      inP.value = r.pending;
-      inP.oninput = () => { r.pending = clampInt(inP.value); saveRows(rows); updateAll(false); };
-      tdP.appendChild(inP);
-
-      // إجمالي
-      const tdT = document.createElement("td");
-      const inT = document.createElement("input");
-      inT.type = "number"; inT.min = "0"; inT.className = "cellInput";
-      inT.value = r.total;
-      inT.oninput = () => { r.total = clampInt(inT.value); saveRows(rows); updateAll(false); };
-      tdT.appendChild(inT);
-
-      // الحالة
-      const tdS = document.createElement("td");
-      const badge = document.createElement("span");
-      badge.className = "badge";
-      const dot = document.createElement("span");
-      dot.className = "dot";
-      const txt = document.createElement("span");
-      txt.textContent = (r.yaseer > 0) ? "يوجد طلاب يسير" : "لا يوجد طلاب يسير";
-      badge.appendChild(dot);
-      badge.appendChild(txt);
-      tdS.appendChild(badge);
-
-      tr.appendChild(tdClass);
-      tr.appendChild(tdBuilding);
-      tr.appendChild(tdGrade);
-      tr.appendChild(tdY);
-      tr.appendChild(tdP);
-      tr.appendChild(tdT);
-      tr.appendChild(tdS);
-
-      tbody.appendChild(tr);
-    }
-  }
-
-  // 7) الإحصائيات (دقيقة)
-  function renderStats(){
-    const totalClasses = rows.length;
-    const sumYaseer = rows.reduce((a,r)=>a + clampInt(r.yaseer), 0);
-    const sumPending = rows.reduce((a,r)=>a + clampInt(r.pending), 0);
-    const sumTotal = rows.reduce((a,r)=>a + clampInt(r.total), 0);
-
-    statClasses.textContent = totalClasses;
-    statYaseer.textContent = sumYaseer;
-    statPending.textContent = sumPending;
-    statTotal.textContent = sumTotal;
-
-    const buildings = ["الشمالي","الجنوبي","الرئيسي"];
-    const grades = ["أول متوسط","ثاني متوسط","ثالث متوسط"];
-
-    const bAgg = Object.fromEntries(buildings.map(b=>[b,0]));
-    const gAgg = Object.fromEntries(grades.map(g=>[g,0]));
-
-    for(const r of rows){
-      bAgg[r.building] = (bAgg[r.building] || 0) + clampInt(r.yaseer);
-      gAgg[r.grade] = (gAgg[r.grade] || 0) + clampInt(r.yaseer);
     }
 
-    byBuilding.innerHTML = "";
-    buildings.forEach(b=>{
-      const div = document.createElement("div");
-      div.className = "row";
-      const name = document.createElement("span");
-      name.textContent = (b==="الشمالي") ? "المبنى الشمالي" : (b==="الجنوبي") ? "المبنى الجنوبي" : "المبنى الرئيسي";
-      const val = document.createElement("span");
-      val.textContent = bAgg[b] || 0;
-      div.appendChild(name); div.appendChild(val);
-      byBuilding.appendChild(div);
+    els.unlockBtn.addEventListener("click", ()=>{
+      const p = prompt("أدخل كلمة المرور لتفعيل وضع التعديل:");
+      if(p === null) return;
+      if(p === ADMIN_PASS){
+        editMode = true;
+        render(); // يعيد التمكين للحقول
+      }else{
+        alert("كلمة المرور غير صحيحة.");
+      }
     });
 
-    byGrade.innerHTML = "";
-    grades.forEach(g=>{
-      const div = document.createElement("div");
-      div.className = "row";
-      const name = document.createElement("span");
-      name.textContent = g;
-      const val = document.createElement("span");
-      val.textContent = gAgg[g] || 0;
-      div.appendChild(name); div.appendChild(val);
-      byGrade.appendChild(div);
+    els.lockBtn.addEventListener("click", ()=>{
+      editMode = false;
+      render();
+      alert("تم قفل اللوحة (عرض فقط).");
     });
-  }
 
-  function updateAll(reRenderTable=true){
-    if(reRenderTable) renderTable();
-    renderStats();
-  }
+    els.resetBtn.addEventListener("click", ()=>{
+      const ok = confirm("تأكيد: هل تريد تصفير البيانات؟ (لن تُحذف الملفات، فقط الأرقام)");
+      if(!ok) return;
+      data = structuredClone(DEFAULT_ROWS).map(r=>({cls:r.cls, yaseer:0, pending:0}));
+      saveData();
+      render();
+    });
 
-  // أحداث الفلاتر
-  [filterBuilding, filterGrade, filterHasYaseer].forEach(el=>{
-    el.addEventListener("change", ()=>renderTable());
-  });
-  searchBox.addEventListener("input", ()=>renderTable());
-
-  btnRefresh.addEventListener("click", ()=>updateAll(true));
-
-  btnReset.addEventListener("click", ()=>{
-    localStorage.removeItem(STORAGE_KEY);
-    rows = makeDefaultRows();
-    updateAll(true);
-  });
-
-  // أول تحميل
-  updateAll(true);
-</script>
+    // تشغيل
+    render();
+  </script>
 </body>
 </html>
