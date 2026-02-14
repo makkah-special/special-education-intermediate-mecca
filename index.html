@@ -1,216 +1,181 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>قسم التربية الخاصة | مدرسة مكة المكرمة المتوسطة</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مدرسة مكة المكرمة المتوسطة | بوابة التربية الخاصة</title>
 
-<style>
-:root{
---bg:#0b1220;
---card:#0f1a2e;
---text:#eaf0ff;
---muted:#9fb2d6;
---primary:#4f8cff;
---primary2:#7c5cff;
---radius:18px;
---border:rgba(255,255,255,.08);
---shadow:0 10px 30px rgba(0,0,0,.4);
-font-family:"Tajawal","Segoe UI",system-ui;
-}
+  <meta name="description" content="بوابة برامج التربية الخاصة في مدرسة مكة المكرمة المتوسطة: الإعاقة العقلية وبرنامج يسير التعليمي، مع نماذج وخطط جاهزة." />
+  <meta name="keywords" content="مدرسة مكة المكرمة المتوسطة, التربية الخاصة, الإعاقة العقلية, برنامج يسير التعليمي, خطط IEP" />
 
-*{box-sizing:border-box}
-body{
-margin:0;
-background:linear-gradient(180deg,#071022,#050a15);
-color:var(--text);
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 
-.wrap{max-width:1100px;margin:auto;padding:30px 20px}
-
-.hero{
-background:linear-gradient(135deg,#101b33,#0e1a2c);
-border-radius:var(--radius);
-padding:30px;
-box-shadow:var(--shadow);
-border:1px solid var(--border);
-}
-
-h1{margin:0;font-size:26px}
-.subtitle{color:var(--muted);margin-top:8px;line-height:1.8}
-
-.buttons{
-margin-top:20px;
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-}
-
-.btn{
-padding:14px 20px;
-border-radius:14px;
-border:none;
-cursor:pointer;
-font-weight:700;
-font-size:15px;
-text-decoration:none;
-display:inline-block;
-}
-
-.btn.primary{
-background:linear-gradient(135deg,var(--primary),var(--primary2));
-color:white;
-}
-
-.btn.secondary{
-background:#16233d;
-color:white;
-border:1px solid var(--border);
-}
-
-/* Stats Bar */
-.stats{
-margin-top:25px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-}
-
-.stat-card{
-background:rgba(255,255,255,.04);
-border:1px solid var(--border);
-border-radius:16px;
-padding:20px;
-text-align:center;
-transition:.3s;
-}
-
-.stat-card:hover{
-transform:translateY(-4px);
-}
-
-.stat-number{
-font-size:28px;
-font-weight:800;
-margin-bottom:8px;
-color:#4f8cff;
-}
-
-.stat-label{
-color:var(--muted);
-font-size:14px;
-}
-
-/* Program Cards */
-.programs{
-margin-top:40px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
-}
-
-.program-card{
-background:linear-gradient(145deg,#101a30,#0d1626);
-border-radius:18px;
-padding:25px;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-}
-
-.program-card h2{
-margin:0 0 10px;
-font-size:20px;
-}
-
-.program-card p{
-color:var(--muted);
-line-height:1.8;
-}
-
-.footer{
-margin-top:50px;
-text-align:center;
-color:var(--muted);
-font-size:13px;
-}
-
-</style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-<div class="wrap">
 
-<!-- HERO -->
-<div class="hero">
-<h1>بوابة قسم التربية الخاصة</h1>
-<p class="subtitle">
-مدرسة مكة المكرمة المتوسطة — منصة رقمية متقدمة لبرامج التربية الخاصة
-</p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="school-logo.png" alt="شعار المدرسة">
+        </div>
+        <div>
+          <div class="brand-title">مدرسة مكة المكرمة المتوسطة</div>
+          <div class="brand-sub">بوابة برامج التربية الخاصة</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<div class="buttons">
-<a href="Slowlearning.html" class="btn primary">برنامج يسير التعليمي</a>
-<a href="Intellectualdisability.html" class="btn secondary">الإعاقة العقلية</a>
-</div>
+  <main>
 
-<!-- STATS -->
-<div class="stats">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="badge">✨ منصة حديثة</div>
+          <h1>برامج التربية الخاصة</h1>
+          <p class="hero-desc">
+            منصة رقمية متقدمة لعرض برامج التربية الخاصة داخل المدرسة،
+            مخصصة للإعاقة العقلية وبرنامج يسير التعليمي.
+          </p>
 
-<div class="stat-card">
-<div class="stat-number">21</div>
-<div class="stat-label">عدد طلاب الإعاقة العقلية</div>
-</div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#programs">استعراض البرامج</a>
+            <a class="btn ghost" href="#iep">النماذج</a>
+          </div>
 
-<div class="stat-card">
-<div class="stat-number">21</div>
-<div class="stat-label">عدد طلاب برنامج يسير</div>
-</div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">2</div>
+              <div class="stat-label">برامج رئيسية</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">4</div>
+              <div class="stat-label">نماذج IEP</div>
+            </div>
+          </div>
+        </div>
 
-<div class="stat-card">
-<div class="stat-number">6</div>
-<div class="stat-label">معلمي الإعاقة العقلية</div>
-</div>
+        <div class="glass-card">
+          <div class="glass-title">وصول سريع</div>
 
-<div class="stat-card">
-<div class="stat-number">2</div>
-<div class="stat-label">معلمي برنامج يسير</div>
-</div>
+          <div class="quick-grid">
 
-<div class="stat-card">
-<div class="stat-number">5</div>
-<div class="stat-label">
-1 تربية فنية<br>
-1 موجه طلابي<br>
-1 إداري تربية خاصة<br>
-مدير المدرسة<br>
-وكيل المدرسة
-</div>
-</div>
+            <a class="quick" href="Intellectualdisability.html">
+              <span class="ic">🧠</span>
+              <span>
+                <b>الإعاقة العقلية</b>
+                <small>خدمات وتعريف ونماذج</small>
+              </span>
+              <span class="arr">‹</span>
+            </a>
 
-</div>
-</div>
+            <a class="quick" href="Slowlearning.html">
+              <span class="ic">📘</span>
+              <span>
+                <b>برنامج يسير التعليمي</b>
+                <small>دعم وخطط متابعة</small>
+              </span>
+              <span class="arr">‹</span>
+            </a>
 
-<!-- PROGRAMS SECTION -->
-<div class="programs">
+          </div>
+        </div>
 
-<div class="program-card">
-<h2>برنامج يسير التعليمي</h2>
-<p>متابعة الطلاب، خطط الدعم، أدوات مساندة تعليمية، ونماذج مخصصة.</p>
-<a href="Slowlearning.html" class="btn primary">دخول الصفحة</a>
-</div>
+      </div>
+    </section>
 
-<div class="program-card">
-<h2>الإعاقة العقلية</h2>
-<p>تعريف، خدمات، إرشادات، نماذج مساندة داخل المدرسة.</p>
-<a href="Intellectualdisability.html" class="btn primary">دخول الصفحة</a>
-</div>
+    <!-- PROGRAMS -->
+    <section class="section" id="programs">
+      <div class="container">
+        <div class="section-head">
+          <h2>البرامج المتاحة</h2>
+          <p>اختر البرنامج للدخول للصفحة التفصيلية.</p>
+        </div>
 
-</div>
+        <div class="cards">
 
-<div class="footer">
-إعداد وتنفيذ: أ. سعد الزهراني © 2026  
-مدرسة مكة المكرمة المتوسطة
-</div>
+          <article class="card">
+            <div class="card-top">
+              <div class="card-ic">🧠</div>
+              <div>
+                <h3>الإعاقة العقلية</h3>
+                <p>تعريف، خدمات، إرشادات، ونماذج مساندة داخل المدرسة.</p>
+              </div>
+            </div>
+            <a class="btn small" href="Intellectualdisability.html">دخول الصفحة</a>
+          </article>
 
-</div>
+          <article class="card">
+            <div class="card-top">
+              <div class="card-ic">📘</div>
+              <div>
+                <h3>برنامج يسير التعليمي</h3>
+                <p>متابعة الطلاب، خطط الدعم، وأدوات مساندة تعليمية.</p>
+              </div>
+            </div>
+            <a class="btn small" href="Slowlearning.html">دخول الصفحة</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- IEP -->
+    <section class="section" id="iep">
+      <div class="container">
+        <div class="section-head">
+          <h2>نماذج وخطط (IEP)</h2>
+          <p>تحميل مباشر للملفات بصيغة PDF.</p>
+        </div>
+
+        <div class="download-list">
+
+          <a class="download" href="iep-math-level1-2026.pdf" target="_blank">
+            <span class="dl-ic">📄</span>
+            <span>
+              <b>رياضيات المستوى الأول 2026</b>
+            </span>
+            <span class="dl-go">فتح</span>
+          </a>
+
+          <a class="download" href="iep-math-level2-2026.pdf" target="_blank">
+            <span class="dl-ic">📄</span>
+            <span>
+              <b>رياضيات المستوى الثاني 2026</b>
+            </span>
+            <span class="dl-go">فتح</span>
+          </a>
+
+          <a class="download" href="iep-arabic-level1-2026.pdf" target="_blank">
+            <span class="dl-ic">📄</span>
+            <span>
+              <b>لغتي المستوى الأول 2026</b>
+            </span>
+            <span class="dl-go">فتح</span>
+          </a>
+
+          <a class="download" href="iep-arabic-level2-2026.pdf" target="_blank">
+            <span class="dl-ic">📄</span>
+            <span>
+              <b>لغتي المستوى الثاني 2026</b>
+            </span>
+            <span class="dl-go">فتح</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="text-align:center;padding:20px;color:rgba(255,255,255,.5)">
+    © 2026 مدرسة مكة المكرمة المتوسطة
+  </footer>
+
 </body>
 </html>
