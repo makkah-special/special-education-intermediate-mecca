@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>لوحة التعليم العام – متابعة برنامج يسير | مدرسة مكة المكرمة المتوسطة</title>
-  <meta name="description" content="لوحة متابعة تفاعلية لبرنامج يسير في فصول التعليم العام مع وضع عرض فقط للزوار ووضع تعديل محمي بكلمة مرور." />
+  <title>لوحة فصول التعليم العام – تشخيص طلاب يسير | مدرسة مكة المكرمة المتوسطة</title>
+  <meta name="description" content="لوحة تفاعلية لفصول التعليم العام لتسجيل طلاب يسير وبانتظار التشخيص مع وضع عرض فقط للزوار ووضع تعديل محمي." />
 
   <style>
     :root{
@@ -15,11 +15,14 @@
       --muted:rgba(234,242,255,.72);
       --shadow:0 18px 60px rgba(0,0,0,.35);
       --radius:22px;
-      --ok: rgba(34,197,94,.85);
-      --warn: rgba(245,158,11,.85);
-      --blue: rgba(59,130,246,.85);
-      --purple: rgba(124,92,255,.85);
-      --font: "Tajawal", system-ui, -apple-system, "Segoe UI", Tahoma, Arial;
+
+      --green: rgba(34,197,94,.95);
+      --gray: rgba(148,163,184,.85);
+      --blue: rgba(59,130,246,.90);
+      --amber: rgba(245,158,11,.95);
+      --purple: rgba(124,92,255,.95);
+
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Tajawal", Tahoma, Arial;
     }
     *{box-sizing:border-box}
     body{
@@ -33,7 +36,7 @@
       min-height:100vh;
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 34px}
+    .wrap{max-width:1180px;margin:0 auto;padding:22px 16px 34px}
 
     /* Top */
     .topbar{
@@ -44,9 +47,7 @@
       flex-wrap:wrap;
       margin-bottom:14px;
     }
-    .brand{
-      display:flex;align-items:center;gap:12px;
-    }
+    .brand{display:flex;align-items:center;gap:12px}
     .logo{
       width:56px;height:56px;border-radius:16px;
       border:1px solid var(--stroke);
@@ -58,7 +59,26 @@
     .title{margin:0;font-size:18px;line-height:1.4}
     .sub{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.7}
 
-    /* Card */
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(59,130,246,.28), rgba(124,92,255,.18));
+      color:var(--text);
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn.secondary{background: rgba(255,255,255,.06)}
+    .btn.danger{background: rgba(239,68,68,.18)}
+
+    /* Panel */
     .panel{
       background:var(--card);
       border:1px solid var(--stroke);
@@ -75,19 +95,10 @@
       flex-wrap:wrap;
       margin-bottom:12px;
     }
-    .panelHead h1{
-      margin:0;
-      font-size:18px;
-      letter-spacing:.2px;
-    }
-    .panelHead p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.7;
-    }
+    .panelHead h1{margin:0;font-size:18px}
+    .panelHead p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.7}
 
-    /* Admin Bar */
+    /* Admin */
     .adminBar{
       display:flex;
       gap:10px;
@@ -108,38 +119,13 @@
       border-radius:999px;
       border:1px solid var(--stroke);
       background:rgba(255,255,255,.04);
-      font-weight:800;
-      font-size:12px;
-      color:rgba(234,242,255,.85);
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:16px;
-      border:1px solid var(--stroke);
-      background: linear-gradient(135deg, rgba(59,130,246,.28), rgba(124,92,255,.18));
-      color:var(--text);
       font-weight:900;
-      font-size:13px;
-      cursor:pointer;
-      user-select:none;
+      font-size:12px;
+      color:rgba(234,242,255,.88);
     }
-    .btn.secondary{
-      background: rgba(255,255,255,.06);
-    }
-    .btn.danger{
-      background: rgba(239,68,68,.18);
-    }
-    .hint{
-      color:var(--muted);
-      font-size:12.5px;
-      line-height:1.7;
-    }
+    .hint{color:var(--muted);font-size:12.5px;line-height:1.7}
 
-    /* Summary */
+    /* KPIs */
     .summary{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -147,7 +133,7 @@
       margin-bottom:12px;
     }
     .kpi{
-      grid-column: span 3;
+      grid-column: span 4;
       background: rgba(0,0,0,.10);
       border: 1px solid var(--stroke);
       border-radius: 18px;
@@ -168,10 +154,10 @@
       flex:0 0 auto;
     }
     .kpi.blue .num{color:var(--blue)}
-    .kpi.ok .num{color:var(--ok)}
-    .kpi.warn .num{color:var(--warn)}
+    .kpi.green .num{color:var(--green)}
+    .kpi.amber .num{color:var(--amber)}
     .kpi.purple .num{color:var(--purple)}
-    @media (max-width: 900px){ .kpi{grid-column: span 6;} }
+    @media (max-width: 980px){ .kpi{grid-column: span 6;} }
     @media (max-width: 560px){ .kpi{grid-column: span 12;} }
 
     /* Table */
@@ -181,32 +167,25 @@
       overflow:hidden;
       background:rgba(0,0,0,.10);
     }
-    table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:13px;
-    }
+    table{width:100%;border-collapse:collapse;font-size:13px}
     thead th{
       text-align:right;
-      padding:12px 12px;
+      padding:12px 10px;
       background:rgba(255,255,255,.05);
       border-bottom:1px solid var(--stroke);
-      color: rgba(234,242,255,.9);
-      font-weight:900;
+      color: rgba(234,242,255,.92);
+      font-weight:1000;
+      white-space:nowrap;
     }
     tbody td{
-      padding:10px 12px;
+      padding:10px 10px;
       border-bottom:1px solid rgba(255,255,255,.06);
       vertical-align:middle;
     }
-    tbody tr:hover td{
-      background:rgba(255,255,255,.03);
-    }
-    .colClass{width:42%}
-    .colNum{width:19%}
-    .colTotal{width:20%}
+    tbody tr:hover td{background:rgba(255,255,255,.03)}
+    .numCell{ text-align:center; font-weight:1000; }
 
-    input[type="number"], input[type="text"]{
+    input[type="number"], input[type="text"], select{
       width:100%;
       padding:10px 10px;
       border-radius:14px;
@@ -214,20 +193,27 @@
       background: rgba(255,255,255,.05);
       color: var(--text);
       outline:none;
-      font-weight:800;
+      font-weight:900;
       font-size:13px;
     }
     input[type="number"]{text-align:center}
-    input[disabled]{
-      opacity:.65;
-      cursor:not-allowed;
-    }
+    input[disabled], select[disabled]{opacity:.65;cursor:not-allowed}
 
-    .rowTotal{
+    .statusPill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
       font-weight:1000;
-      text-align:center;
-      color: rgba(234,242,255,.9);
+      font-size:12px;
+      min-width:120px;
+      white-space:nowrap;
     }
+    .statusGreen{ background: rgba(34,197,94,.14); color: rgba(219,255,235,.95); border-color: rgba(34,197,94,.30); }
+    .statusGray{ background: rgba(148,163,184,.10); color: rgba(234,242,255,.80); border-color: rgba(148,163,184,.25); }
 
     .footer{
       margin-top:12px;
@@ -239,7 +225,6 @@
       font-size:12px;
       line-height:1.8;
     }
-
     .note{
       margin-top:10px;
       color: rgba(234,242,255,.65);
@@ -262,8 +247,8 @@
           <img src="school-logo.png" alt="شعار المدرسة">
         </div>
         <div>
-          <h2 class="title">لوحة التعليم العام – متابعة برنامج يسير</h2>
-          <p class="sub">عرض فقط للزوار — التعديل متاح للمسؤول بكلمة مرور</p>
+          <h2 class="title">لوحة فصول التعليم العام – تشخيص طلاب يسير</h2>
+          <p class="sub">عرض فقط للزوار — التعديل للمسؤول بكلمة مرور</p>
         </div>
       </div>
 
@@ -274,7 +259,7 @@
       <div class="panelHead">
         <div>
           <h1>📊 لوحة المتابعة</h1>
-          <p>سجّل أعداد طلاب برنامج يسير في فصول التعليم العام + (بانتظار التشخيص) مع حساب الإجمالي تلقائيًا.</p>
+          <p>سجّل عدد طلاب يسير + بانتظار التشخيص + إجمالي طلاب الفصل. (الحالة تتحول تلقائيًا أخضر/رمادي)</p>
         </div>
       </div>
 
@@ -292,17 +277,25 @@
         </div>
       </div>
 
-      <!-- Summary -->
-      <div class="summary" aria-label="ملخص">
+      <!-- KPIs (دقيقة وتتحدث تلقائيًا) -->
+      <div class="summary" aria-label="ملخص الإحصائيات">
         <div class="kpi blue">
           <div>
             <div class="num" id="kpiClasses">0</div>
-            <div class="lab">عدد الفصول المسجلة</div>
+            <div class="lab">إجمالي الفصول</div>
           </div>
           <div class="ic">🏫</div>
         </div>
 
-        <div class="kpi ok">
+        <div class="kpi green">
+          <div>
+            <div class="num" id="kpiClassesWithYaseer">0</div>
+            <div class="lab">فصول يوجد فيها طلاب يسير</div>
+          </div>
+          <div class="ic">🟢</div>
+        </div>
+
+        <div class="kpi purple">
           <div>
             <div class="num" id="kpiYaseer">0</div>
             <div class="lab">إجمالي طلاب يسير</div>
@@ -310,7 +303,7 @@
           <div class="ic">📘</div>
         </div>
 
-        <div class="kpi warn">
+        <div class="kpi amber">
           <div>
             <div class="num" id="kpiPending">0</div>
             <div class="lab">بانتظار التشخيص</div>
@@ -318,9 +311,17 @@
           <div class="ic">⏳</div>
         </div>
 
+        <div class="kpi blue">
+          <div>
+            <div class="num" id="kpiTotalStudents">0</div>
+            <div class="lab">إجمالي طلاب الفصول (حسب إدخالك)</div>
+          </div>
+          <div class="ic">👥</div>
+        </div>
+
         <div class="kpi purple">
           <div>
-            <div class="num" id="kpiAll">0</div>
+            <div class="num" id="kpiAllYaseerPending">0</div>
             <div class="lab">إجمالي (يسير + انتظار)</div>
           </div>
           <div class="ic">📌</div>
@@ -332,45 +333,72 @@
         <table>
           <thead>
             <tr>
-              <th class="colClass">الفصل</th>
-              <th class="colNum">طلاب يسير</th>
-              <th class="colNum">بانتظار التشخيص</th>
-              <th class="colTotal">الإجمالي</th>
+              <th>الفصل</th>
+              <th>المبنى</th>
+              <th>الصف</th>
+              <th class="numCell">طلاب يسير</th>
+              <th class="numCell">بانتظار التشخيص</th>
+              <th class="numCell">إجمالي طلاب الفصل</th>
+              <th class="numCell">الحالة</th>
             </tr>
           </thead>
-          <tbody id="tbody">
-            <!-- Rows injected by JS -->
-          </tbody>
+          <tbody id="tbody"></tbody>
         </table>
       </div>
 
       <div class="note">
-        💡 <b>ملاحظة:</b> “عرض فقط” يمنع العبث من أي زائر. للتعديل افتح وضع التعديل بكلمة المرور ثم اقفل اللوحة بعد الانتهاء.
+        ✅ <b>تنبيه:</b> الحماية هنا تمنع العبث للزوار (عرض فقط). للتعديل افتح وضع التعديل بكلمة المرور ثم <b>اقفل اللوحة</b> بعد الانتهاء.
       </div>
 
       <div class="footer">
         <div>إعداد وتنفيذ: أ. سعد الزهراني</div>
-        <div>© <span id="y"></span> مدرسة مكة المكرمة المتوسطة</div>
+        <div>© <span id="y"></span> مدرسة مكة المكرمة المتوسطة — لوحة التعليم العام</div>
       </div>
     </section>
 
   </div>
 
   <script>
-    // ✅ غيّر كلمة المرور هنا فقط:
-    const ADMIN_PASS = "Saad-2026";
+    /* ===============================
+       1) كلمة المرور (غيّرها الآن)
+       =============================== */
+    const ADMIN_PASS = "Saadzh99";
 
-    // ✅ مفتاح التخزين (يضمن حفظ بيانات اللوحة)
-    const STORAGE_KEY = "makkah_special_general_yaseer_v1";
+    /* ===============================
+       2) التخزين المحلي
+       =============================== */
+    const STORAGE_KEY = "makkah_special_general_yaseer_v2";
 
-    const DEFAULT_ROWS = [
-      { cls: "الصف الأول المتوسط (أ)", yaseer: 0, pending: 0 },
-      { cls: "الصف الأول المتوسط (ب)", yaseer: 0, pending: 0 },
-      { cls: "الصف الثاني المتوسط (أ)", yaseer: 0, pending: 0 },
-      { cls: "الصف الثاني المتوسط (ب)", yaseer: 0, pending: 0 },
-      { cls: "الصف الثالث المتوسط (أ)", yaseer: 0, pending: 0 },
-      { cls: "الصف الثالث المتوسط (ب)", yaseer: 0, pending: 0 }
-    ];
+    /* ===============================
+       3) توليد صفوف الفصول المطلوبة:
+          ١/١..٨/١ + ٢/٢..٨/٢ + ٣/٣..٨/٣
+       =============================== */
+    function makeClassRows(){
+      const rows = [];
+      const groups = [
+        { grade:"أول متوسط", prefix:"1" },
+        { grade:"ثاني متوسط", prefix:"2" },
+        { grade:"ثالث متوسط", prefix:"3" },
+      ];
+
+      // المطلوب: من 1..8 لكل مجموعة
+      for(const g of groups){
+        for(let n=1; n<=8; n++){
+          rows.push({
+            cls: `${g.prefix}/${n}`,
+            building: "المبنى الرئيسي",
+            grade: g.grade,
+            yaseer: 0,
+            pending: 0,
+            totalStudents: 0
+          });
+        }
+      }
+      return rows;
+    }
+
+    const BUILDINGS = ["المبنى الشمالي","المبنى الجنوبي","المبنى الرئيسي"];
+    const GRADES = ["أول متوسط","ثاني متوسط","ثالث متوسط"];
 
     const els = {
       tbody: document.getElementById("tbody"),
@@ -378,10 +406,13 @@
       unlockBtn: document.getElementById("unlockBtn"),
       lockBtn: document.getElementById("lockBtn"),
       resetBtn: document.getElementById("resetBtn"),
+
       kpiClasses: document.getElementById("kpiClasses"),
+      kpiClassesWithYaseer: document.getElementById("kpiClassesWithYaseer"),
       kpiYaseer: document.getElementById("kpiYaseer"),
       kpiPending: document.getElementById("kpiPending"),
-      kpiAll: document.getElementById("kpiAll")
+      kpiTotalStudents: document.getElementById("kpiTotalStudents"),
+      kpiAllYaseerPending: document.getElementById("kpiAllYaseerPending"),
     };
 
     document.getElementById("y").textContent = new Date().getFullYear();
@@ -389,21 +420,37 @@
     let editMode = false;
     let data = loadData();
 
+    function num(v){
+      const n = Number(v);
+      if(!Number.isFinite(n) || n < 0) return 0;
+      return Math.floor(n);
+    }
+
     function loadData(){
       try{
         const raw = localStorage.getItem(STORAGE_KEY);
-        if(!raw) return structuredClone(DEFAULT_ROWS);
+        if(!raw) return makeClassRows();
         const parsed = JSON.parse(raw);
-        if(!Array.isArray(parsed) || parsed.length === 0) return structuredClone(DEFAULT_ROWS);
+        if(!Array.isArray(parsed) || parsed.length === 0) return makeClassRows();
 
-        // تطبيع
-        return parsed.map(r=>({
-          cls: String(r.cls ?? "").trim() || "فصل غير مسمى",
-          yaseer: num(r.yaseer),
-          pending: num(r.pending)
-        }));
+        // تطبيع مع الحفاظ على نفس ترتيب الفصول المطلوب
+        const base = makeClassRows();
+        const map = new Map(parsed.map(r=>[String(r.cls).trim(), r]));
+
+        return base.map(r=>{
+          const old = map.get(r.cls);
+          if(!old) return r;
+          return {
+            cls: r.cls,
+            building: BUILDINGS.includes(old.building) ? old.building : r.building,
+            grade: GRADES.includes(old.grade) ? old.grade : r.grade,
+            yaseer: num(old.yaseer),
+            pending: num(old.pending),
+            totalStudents: num(old.totalStudents),
+          };
+        });
       }catch(e){
-        return structuredClone(DEFAULT_ROWS);
+        return makeClassRows();
       }
     }
 
@@ -411,31 +458,60 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
 
-    function num(v){
-      const n = Number(v);
-      if(!Number.isFinite(n) || n < 0) return 0;
-      return Math.floor(n);
+    function statusInfo(row){
+      const has = num(row.yaseer) > 0;
+      return {
+        text: has ? "يوجد طلاب يسير" : "لا يوجد",
+        cls: has ? "statusGreen" : "statusGray"
+      };
+    }
+
+    function makeSelect(options, value, disabled){
+      const sel = document.createElement("select");
+      options.forEach(opt=>{
+        const o = document.createElement("option");
+        o.value = opt;
+        o.textContent = opt;
+        if(opt === value) o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.disabled = disabled;
+      return sel;
     }
 
     function render(){
       els.tbody.innerHTML = "";
+
       data.forEach((row, idx)=>{
         const tr = document.createElement("tr");
 
+        // 1) الفصل (ثابت)
         const tdClass = document.createElement("td");
-        tdClass.className = "colClass";
-        const clsInput = document.createElement("input");
-        clsInput.type = "text";
-        clsInput.value = row.cls;
-        clsInput.disabled = !editMode;
-        clsInput.addEventListener("input", ()=>{
-          data[idx].cls = clsInput.value;
+        tdClass.textContent = row.cls;
+        tdClass.style.fontWeight = "1000";
+        tdClass.style.whiteSpace = "nowrap";
+
+        // 2) المبنى
+        const tdBuilding = document.createElement("td");
+        const buildingSel = makeSelect(BUILDINGS, row.building, !editMode);
+        buildingSel.addEventListener("change", ()=>{
+          data[idx].building = buildingSel.value;
           saveData();
         });
-        tdClass.appendChild(clsInput);
+        tdBuilding.appendChild(buildingSel);
 
+        // 3) الصف
+        const tdGrade = document.createElement("td");
+        const gradeSel = makeSelect(GRADES, row.grade, !editMode);
+        gradeSel.addEventListener("change", ()=>{
+          data[idx].grade = gradeSel.value;
+          saveData();
+        });
+        tdGrade.appendChild(gradeSel);
+
+        // 4) يسير
         const tdY = document.createElement("td");
-        tdY.className = "colNum";
+        tdY.className = "numCell";
         const yInput = document.createElement("input");
         yInput.type = "number";
         yInput.min = "0";
@@ -446,12 +522,13 @@
           yInput.value = data[idx].yaseer;
           saveData();
           updateKPIs();
-          updateRowTotal(tr, idx);
+          updateStatus(tr, idx);
         });
         tdY.appendChild(yInput);
 
+        // 5) انتظار
         const tdP = document.createElement("td");
-        tdP.className = "colNum";
+        tdP.className = "numCell";
         const pInput = document.createElement("input");
         pInput.type = "number";
         pInput.min = "0";
@@ -462,18 +539,41 @@
           pInput.value = data[idx].pending;
           saveData();
           updateKPIs();
-          updateRowTotal(tr, idx);
         });
         tdP.appendChild(pInput);
 
+        // 6) إجمالي طلاب الفصل (يدوي)
         const tdT = document.createElement("td");
-        tdT.className = "colTotal rowTotal";
-        tdT.textContent = String(row.yaseer + row.pending);
+        tdT.className = "numCell";
+        const tInput = document.createElement("input");
+        tInput.type = "number";
+        tInput.min = "0";
+        tInput.value = row.totalStudents;
+        tInput.disabled = !editMode;
+        tInput.addEventListener("input", ()=>{
+          data[idx].totalStudents = num(tInput.value);
+          tInput.value = data[idx].totalStudents;
+          saveData();
+          updateKPIs();
+        });
+        tdT.appendChild(tInput);
+
+        // 7) الحالة
+        const tdS = document.createElement("td");
+        tdS.className = "numCell";
+        const pill = document.createElement("span");
+        const st = statusInfo(row);
+        pill.className = `statusPill ${st.cls}`;
+        pill.textContent = st.text;
+        tdS.appendChild(pill);
 
         tr.appendChild(tdClass);
+        tr.appendChild(tdBuilding);
+        tr.appendChild(tdGrade);
         tr.appendChild(tdY);
         tr.appendChild(tdP);
         tr.appendChild(tdT);
+        tr.appendChild(tdS);
 
         els.tbody.appendChild(tr);
       });
@@ -482,20 +582,27 @@
       updateModeUI();
     }
 
-    function updateRowTotal(tr, idx){
-      const totalCell = tr.querySelector(".rowTotal");
-      if(!totalCell) return;
-      totalCell.textContent = String(num(data[idx].yaseer) + num(data[idx].pending));
+    function updateStatus(tr, idx){
+      const pill = tr.querySelector(".statusPill");
+      if(!pill) return;
+      const st = statusInfo(data[idx]);
+      pill.className = `statusPill ${st.cls}`;
+      pill.textContent = st.text;
     }
 
     function updateKPIs(){
-      const classes = data.length;
-      const yaseerSum = data.reduce((a,r)=>a + num(r.yaseer), 0);
-      const pendingSum = data.reduce((a,r)=>a + num(r.pending), 0);
-      els.kpiClasses.textContent = String(classes);
-      els.kpiYaseer.textContent = String(yaseerSum);
-      els.kpiPending.textContent = String(pendingSum);
-      els.kpiAll.textContent = String(yaseerSum + pendingSum);
+      const totalClasses = data.length;
+      const totalYaseer = data.reduce((a,r)=>a + num(r.yaseer), 0);
+      const totalPending = data.reduce((a,r)=>a + num(r.pending), 0);
+      const totalStudents = data.reduce((a,r)=>a + num(r.totalStudents), 0);
+      const classesWithYaseer = data.reduce((a,r)=>a + (num(r.yaseer) > 0 ? 1 : 0), 0);
+
+      els.kpiClasses.textContent = String(totalClasses);
+      els.kpiClassesWithYaseer.textContent = String(classesWithYaseer);
+      els.kpiYaseer.textContent = String(totalYaseer);
+      els.kpiPending.textContent = String(totalPending);
+      els.kpiTotalStudents.textContent = String(totalStudents);
+      els.kpiAllYaseerPending.textContent = String(totalYaseer + totalPending);
     }
 
     function updateModeUI(){
@@ -504,9 +611,9 @@
       els.lockBtn.style.display = editMode ? "" : "none";
       els.resetBtn.style.display = editMode ? "" : "none";
 
-      // تعطيل/تمكين الحقول
-      document.querySelectorAll("input").forEach(inp=>{
-        inp.disabled = !editMode;
+      // تمكين/تعطيل الحقول
+      document.querySelectorAll("input, select").forEach(el=>{
+        el.disabled = !editMode;
       });
     }
 
@@ -515,7 +622,7 @@
       if(p === null) return;
       if(p === ADMIN_PASS){
         editMode = true;
-        render(); // يعيد التمكين للحقول
+        render();
       }else{
         alert("كلمة المرور غير صحيحة.");
       }
@@ -528,9 +635,9 @@
     });
 
     els.resetBtn.addEventListener("click", ()=>{
-      const ok = confirm("تأكيد: هل تريد تصفير البيانات؟ (لن تُحذف الملفات، فقط الأرقام)");
+      const ok = confirm("تأكيد: هل تريد تصفير البيانات؟ (سيتم تصفير الأرقام فقط)");
       if(!ok) return;
-      data = structuredClone(DEFAULT_ROWS).map(r=>({cls:r.cls, yaseer:0, pending:0}));
+      data = makeClassRows();
       saveData();
       render();
     });
