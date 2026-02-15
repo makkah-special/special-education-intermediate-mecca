@@ -53,13 +53,60 @@ body{
   backdrop-filter: blur(14px);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
+
+/* ✅ مهم: نخلي الحاوية مرجع للشعار absolute */
 .topbar-inner{
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:12px 0;
   gap:14px;
+
+  /* ✅ مساحة للشعار يسار */
+  padding-left:110px;
 }
+
+/* ✅ شعار وزارة التعليم (الآن هو <a class="moe-logo">) */
+.moe-logo{
+  position:absolute;
+  left:28px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  align-items:center;
+  z-index:5;
+  opacity:.9;
+
+  /* ✅ جديد: لأنه رابط */
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent; /* يخفف لمعة الضغط في الجوال */
+  transition:.25s ease;
+}
+
+.moe-logo img{
+  height:52px;
+  /* يخلي الشعار فاتح/أبيض على الخلفية الداكنة */
+  filter: brightness(0) invert(1) drop-shadow(0 6px 14px rgba(0,0,0,.35));
+  transition:.25s ease;
+}
+
+/* ✅ جديد: Hover على الرابط نفسه */
+.moe-logo:hover{
+  opacity:1;
+}
+.moe-logo:hover img{
+  transform: scale(1.05);
+}
+
+/* ضبط الجوال */
+@media (max-width: 768px){
+  .topbar-inner{ padding-left:72px; }
+  .moe-logo{ left:14px; }
+  .moe-logo img{ height:40px; }
+}
+
 .brand{
   display:flex;
   align-items:center;

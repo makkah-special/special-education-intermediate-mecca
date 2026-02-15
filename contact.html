@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تواصل معنا | مدرسة مكة المكرمة المتوسطة</title>
+  <meta name="description" content="صفحة تواصل رسمية لمدرسة مكة المكرمة المتوسطة – برامج قسم ذوي الإعاقة." />
+
+  <!-- نفس خطك (إن كنت تستخدمه) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <!-- نفس ملف التنسيق عندك -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- إضافات خفيفة جداً لضمان نفس الهوية بدون ما نغير تصميمك -->
+  <style>
+    :root{ color-scheme: dark; }
+    body{ font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .wrap{ max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+    .grid{ display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 900px){ .grid{ grid-template-columns: 1.1fr .9fr; } }
+    .card{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+    .title{ margin: 0 0 6px; font-weight: 800; font-size: 22px; }
+    .muted{ opacity:.85; margin: 0 0 14px; }
+    .row{ display:flex; gap:10px; flex-wrap: wrap; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px; border-radius: 14px; text-decoration:none;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(79,140,255,.85), rgba(124,92,255,.85));
+      color: #fff; font-weight: 800;
+    }
+    .btn.secondary{
+      background: rgba(255,255,255,.06);
+      color: #eaf0ff;
+    }
+    label{ display:block; margin: 10px 0 6px; font-weight: 700; opacity:.95; }
+    input, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      color: #eaf0ff;
+      outline: none;
+    }
+    textarea{ min-height: 140px; resize: vertical; }
+    .note{ font-size: 13px; opacity: .8; margin-top: 10px; }
+    .divider{ height:1px; background: rgba(255,255,255,.10); margin: 14px 0; }
+    .footer{ margin-top: 18px; opacity: .75; font-size: 13px; }
+  </style>
+</head>
+
+<body>
+
+  <main class="wrap">
+    <!-- رأس الصفحة -->
+    <section class="card" style="margin-bottom:16px;">
+      <h1 class="title">تواصل معنا</h1>
+      <p class="muted">للاستفسارات والملاحظات المتعلقة بـ <b>برامج قسم ذوي الإعاقة</b> في مدرسة مكة المكرمة المتوسطة.</p>
+      <div class="row">
+        <a class="btn secondary" href="index.html">الرجوع للرئيسية</a>
+        <a class="btn" href="https://makkah-special.github.io" target="_blank" rel="noopener">زيارة الموقع</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- نموذج التواصل -->
+      <section class="card">
+        <h2 class="title" style="font-size:18px;">إرسال رسالة</h2>
+        <p class="muted" style="margin-bottom:10px;">املأ البيانات التالية، وسيتم فتح البريد لإرسال رسالتك (بدون أي اشتراكات).</p>
+
+        <!-- نموذج يفتح بريد Gmail/Outlook مباشرة -->
+        <form id="contactForm">
+          <label for="name">الاسم</label>
+          <input id="name" name="name" type="text" placeholder="مثال: ولي أمر الطالب ..." required>
+
+          <label for="phone">رقم التواصل (اختياري)</label>
+          <input id="phone" name="phone" type="text" placeholder="05xxxxxxxx">
+
+          <label for="message">الرسالة</label>
+          <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+
+          <div class="row" style="margin-top:12px;">
+            <button class="btn" type="submit">إرسال عبر البريد</button>
+            <a class="btn secondary" href="index.html">إلغاء</a>
+          </div>
+
+          <div class="note">
+            * ملاحظة: هذه الصفحة لا تحفظ أي بيانات؛ فقط تجهّز رسالة بريد جاهزة للإرسال.
+          </div>
+        </form>
+      </section>
+
+      <!-- بيانات رسمية -->
+      <aside class="card">
+        <h2 class="title" style="font-size:18px;">بيانات التواصل</h2>
+
+        <div class="divider"></div>
+
+        <p class="muted" style="margin:0 0 10px;">
+          <b>مدرسة مكة المكرمة المتوسطة</b><br>
+          <span>برامج قسم ذوي الإعاقة</span>
+        </p>
+
+        <!-- عدّل البريد هنا لاحقاً -->
+        <p style="margin:0 0 10px;">
+          ✉️ البريد: <a href="mailto:REPLACE_WITH_OFFICIAL_EMAIL" style="color:#eaf0ff;">REPLACE_WITH_OFFICIAL_EMAIL</a>
+        </p>
+
+        <!-- عدّل الرقم هنا لاحقاً -->
+        <p style="margin:0 0 10px;">
+          📞 الهاتف: <span style="opacity:.9;">REPLACE_WITH_PHONE</span>
+        </p>
+
+        <!-- عدّل الموقع هنا لاحقاً -->
+        <p style="margin:0;">
+          📍 الموقع: <span style="opacity:.9;">REPLACE_WITH_LOCATION</span>
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="footer">© 2026 مدرسة مكة المكرمة المتوسطة — قسم ذوي الإعاقة</p>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // ✅ يفتح البريد برسالة جاهزة (بدون سيرفر)
+    const TO_EMAIL = "REPLACE_WITH_OFFICIAL_EMAIL"; // غيّرها لبريد المدرسة/القسم
+    const SUBJECT  = "تواصل - مدرسة مكة المكرمة المتوسطة (قسم ذوي الإعاقة)";
+
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const msg = document.getElementById("message").value.trim();
+
+      const body =
+        `الاسم: ${name}\n` +
+        (phone ? `رقم التواصل: ${phone}\n` : ``) +
+        `\nالرسالة:\n${msg}\n\n` +
+        `— تم الإرسال عبر صفحة التواصل بالموقع`;
+
+      const mailto = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    });
+  </script>
+
+</body>
+</html>
