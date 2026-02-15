@@ -5,7 +5,7 @@ window.DASHBOARD_DATA = [
   { classroom:"3/1", building:"المبنى الشمالي", grade:"أول متوسط",  yaseer:0, pending:0, total:30 },
   { classroom:"4/1", building:"المبنى الجنوبي", grade:"أول متوسط",  yaseer:1, pending:0, total:31 },
   { classroom:"5/1", building:"المبنى الرئيسي", grade:"أول متوسط",  yaseer:1, pending:0, total:46 },
-  { classroom:"6/1", building:"المبنى الجنوبي", grade:"أول متوسط",  yaseer:0, pending:0, total:29 },
+  { classroom:"6/1", building:"المبنى الجنوبي", grade:"أول متوسط",  yaseer:1, pending:0, total:30 },
   { classroom:"7/1", building:"المبنى الشمالي", grade:"أول متوسط",  yaseer:0, pending:0, total:27 },
   { classroom:"8/1", building:"المبنى الرئيسي", grade:"أول متوسط",  yaseer:0, pending:0, total:23 },
   { classroom:"9/1", building:"المبنى الرئيسي", grade:"أول متوسط",  yaseer:0, pending:0, total:18 },
