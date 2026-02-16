@@ -29,6 +29,7 @@
     }
 
     *{box-sizing:border-box}
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family:var(--font);
@@ -44,7 +45,7 @@
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px}
 
-    /* ===== زر لوحة المتابعة التفاعلية (إضافة فقط بدون تغيير التصميم) ===== */
+    /* ===== زر لوحة المتابعة التفاعلية ===== */
     .dashboard-banner{
       display:flex;
       justify-content:center;
@@ -195,15 +196,56 @@
       font-size:12.5px;
     }
     .muted{color:var(--muted)}
+
+    /* Quiz */
+    .quiz-form { margin-top: 14px; }
+    .q {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+    .q-title {
+      font-weight: 800;
+      margin-bottom: 10px;
+      line-height: 1.8;
+    }
+    .opt {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 8px 0;
+      line-height: 1.9;
+      cursor: pointer;
+    }
+    .opt input[type="radio"]{
+      margin-top: 6px;
+      transform: scale(1.05);
+    }
+    .quiz-actions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+    .quiz-result{
+      margin-top: 14px;
+      text-align: center;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.10);
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
 
-    <!-- ✅ زر لوحة المتابعة التفاعلية (إضافة فقط) -->
+    <!-- ✅ زر لوحة المتابعة التفاعلية -->
     <div class="dashboard-banner">
-      <a href="https://makkah-special.github.io/dashboard.html" target="_blank">
+      <a href="https://makkah-special.github.io/dashboard.html" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M4 19h16M6 17l4-6 4 3 4-8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -216,7 +258,6 @@
         <div class="toprow">
           <div class="brand">
             <div class="badge" aria-hidden="true">
-              <!-- Spark icon -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M12 2l1.6 6.1L20 10l-6.4 1.9L12 18l-1.6-6.1L4 10l6.4-1.9L12 2z" stroke="white" stroke-width="1.6" opacity=".95"/>
               </svg>
@@ -324,7 +365,7 @@
 
       <h3>ما هو برنامج يسير التعليمي؟</h3>
       <p>
-       برنامج يسير هو أحد البرامج التعليمية في مدارس التعليم العام، صُمم لخدمة الطلبة ذوي الذكاء الحدي من خلال:
+        برنامج يسير هو أحد البرامج التعليمية في مدارس التعليم العام، صُمم لخدمة الطلبة ذوي الذكاء الحدي من خلال:
       </p>
     </section>
 
@@ -390,7 +431,7 @@
     </section>
 
     <!-- Quiz -->
-    <section class="card" id="quiz">
+    <section class="section-card" id="quiz">
       <h2>خامساً: اختبر معلوماتك عن برنامج يسير</h2>
       <p class="muted">اختبار قصير موجّه لقائد المدرسة والمعلمين وأولياء الأمور.</p>
 
@@ -446,48 +487,6 @@
 
       <div id="result" class="quiz-result" aria-live="polite"></div>
     </section>
-
-    <style>
-      .quiz-form { margin-top: 14px; }
-      .q {
-        background: rgba(255,255,255,.06);
-        border: 1px solid rgba(255,255,255,.10);
-        border-radius: 14px;
-        padding: 14px;
-        margin: 12px 0;
-      }
-      .q-title {
-        font-weight: 800;
-        margin-bottom: 10px;
-        line-height: 1.8;
-      }
-      .opt {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        margin: 8px 0;
-        line-height: 1.9;
-        cursor: pointer;
-      }
-      .opt input[type="radio"]{
-        margin-top: 6px;
-        transform: scale(1.05);
-      }
-      .quiz-actions {
-        margin-top: 14px;
-        display: flex;
-        justify-content: center;
-      }
-      .quiz-result{
-        margin-top: 14px;
-        text-align: center;
-        font-weight: 800;
-        padding: 12px;
-        border-radius: 14px;
-        background: rgba(0,0,0,.18);
-        border: 1px solid rgba(255,255,255,.10);
-      }
-    </style>
 
     <script>
       function calculateScore() {
