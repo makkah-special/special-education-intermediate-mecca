@@ -462,6 +462,133 @@
   .c-part { background: #fef3c7; color: #92400e; }
   .c-no   { background: #fee2e2; color: #991b1b; }
 
+  /* IQRAR */
+  .iqrar-box {
+    background: linear-gradient(135deg, #fffbf0, #fff8e6);
+    border: 1px solid #f0d898;
+    border-right: 4px solid var(--accent);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--text);
+  }
+
+  .iqrar-box h3 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .iqrar-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .iqrar-field {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+
+  .iqrar-field label {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .iqrar-field span {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .sign-area {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    background: #fff;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin: 16px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sign-area:hover { border-color: var(--accent); background: #fffbf0; }
+  .sign-area.signed { border-color: var(--green-light); border-style: solid; background: #f0faf5; }
+
+  .sign-area canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+
+  .sign-placeholder { color: var(--muted); font-size: 0.84rem; font-weight: 600; text-align: center; }
+  .sign-placeholder span { font-size: 1.6rem; display: block; margin-bottom: 4px; }
+
+  .iqrar-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+  .btn-sign {
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 4px 14px rgba(26,107,74,0.3);
+  }
+
+  .btn-sign:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26,107,74,0.4); }
+
+  .btn-clear-sign {
+    background: #fff;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-clear-sign:hover { border-color: #ef4444; color: #ef4444; }
+
+  .signed-badge {
+    display: none;
+    background: #d1fae5;
+    border: 1px solid #6ee7b7;
+    color: #065f46;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    align-items: center;
+    gap: 8px;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 640px) {
     header { padding: 12px 18px; }
@@ -526,6 +653,7 @@
       <button class="tab-btn active" onclick="openTab('plan',this)">📋 الخطة الفردية</button>
       <button class="tab-btn" onclick="openTab('reports',this)">📊 التقارير</button>
       <button class="tab-btn" onclick="openTab('followup',this)">📅 المتابعة</button>
+      <button class="tab-btn" onclick="openTab('iqrar',this)">✍️ الإقرار</button>
       <button class="tab-btn" onclick="openTab('info',this)">👤 البيانات</button>
     </div>
 
@@ -552,6 +680,14 @@
         <div style="overflow-x:auto;">
           <table class="fu-table" id="fu-table"></table>
         </div>
+      </div>
+    </div>
+
+    <!-- IQRAR -->
+    <div class="tab-pane" id="tab-iqrar">
+      <div class="s-card">
+        <div class="s-card-head">✍️ إقرار اطلاع ولي الأمر على الخطة الفردية</div>
+        <div style="padding:24px;" id="iqrar-content"></div>
       </div>
     </div>
 
@@ -1123,6 +1259,60 @@ function loadStudent(pin) {
     <tr><th>الفصل الدراسي</th><td>الفصل الثاني</td></tr>
   `;
 
+  // IQRAR
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('ar-SA-u-nu-latn', { year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('iqrar-content').innerHTML = `
+    <div class="iqrar-box">
+      <h3>📄 نص الإقرار</h3>
+      <p>
+        أنا ولي أمر الطالب / <strong>${s.name}</strong>، أُقرّ بأنني اطلعتُ على الخطة التعليمية الفردية المُعدَّة لابني
+        للفصل الدراسي الثاني من العام الدراسي 1445/1446هـ، وأنني على دراية بجميع الأهداف والبرامج المذكورة فيها،
+        وأتعهد بالتعاون مع فريق التربية الخاصة لتحقيق أفضل النتائج لابني.
+      </p>
+    </div>
+
+    <div class="iqrar-fields">
+      <div class="iqrar-field">
+        <label>اسم الطالب</label>
+        <span>${s.name}</span>
+      </div>
+      <div class="iqrar-field">
+        <label>الصف الدراسي</label>
+        <span>${s.grade}</span>
+      </div>
+      <div class="iqrar-field">
+        <label>البرنامج</label>
+        <span>📘 برنامج يسير التعليمي</span>
+      </div>
+      <div class="iqrar-field">
+        <label>تاريخ الإقرار</label>
+        <span id="iqrar-date">${dateStr}</span>
+      </div>
+    </div>
+
+    <div style="font-size:0.84rem; font-weight:700; color:var(--primary); margin-bottom:8px;">✍️ توقيع ولي الأمر (ارسم توقيعك بالأسفل)</div>
+    <div class="sign-area" id="sign-area">
+      <canvas id="sign-canvas"></canvas>
+      <div class="sign-placeholder" id="sign-placeholder">
+        <span>✍️</span>
+        اضغط هنا وارسم توقيعك
+      </div>
+    </div>
+
+    <div class="iqrar-actions">
+      <button class="btn-sign" onclick="submitIqrar()">✅ تأكيد الإقرار والتوقيع</button>
+      <button class="btn-clear-sign" onclick="clearSign()">🗑️ مسح التوقيع</button>
+    </div>
+
+    <div class="signed-badge" id="signed-badge">
+      ✅ تم تسجيل إقرارك بنجاح — شكراً لتعاونكم
+    </div>
+  `;
+
+  // Initialize signature canvas
+  initCanvas();
+
   // SHOW PORTAL
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('student-portal').style.display = 'block';
@@ -1149,7 +1339,88 @@ function openTab(id, btn) {
 }
 
 // Legend
-const legend = document.createElement('div');
+// =====================================================
+// SIGNATURE CANVAS
+// =====================================================
+let isDrawing = false;
+let signCanvas, signCtx;
+
+function initCanvas() {
+  setTimeout(() => {
+    signCanvas = document.getElementById('sign-canvas');
+    if (!signCanvas) return;
+    const area = document.getElementById('sign-area');
+    signCanvas.width = area.offsetWidth;
+    signCanvas.height = area.offsetHeight;
+    signCtx = signCanvas.getContext('2d');
+    signCtx.strokeStyle = '#1a3a5c';
+    signCtx.lineWidth = 2.5;
+    signCtx.lineCap = 'round';
+    signCtx.lineJoin = 'round';
+
+    signCanvas.addEventListener('mousedown', startDraw);
+    signCanvas.addEventListener('mousemove', draw);
+    signCanvas.addEventListener('mouseup', stopDraw);
+    signCanvas.addEventListener('mouseleave', stopDraw);
+    signCanvas.addEventListener('touchstart', e => { e.preventDefault(); startDraw(e.touches[0]); }, {passive:false});
+    signCanvas.addEventListener('touchmove', e => { e.preventDefault(); draw(e.touches[0]); }, {passive:false});
+    signCanvas.addEventListener('touchend', stopDraw);
+  }, 150);
+}
+
+function getPos(e) {
+  const rect = signCanvas.getBoundingClientRect();
+  return {
+    x: (e.clientX - rect.left) * (signCanvas.width / rect.width),
+    y: (e.clientY - rect.top) * (signCanvas.height / rect.height)
+  };
+}
+
+function startDraw(e) {
+  isDrawing = true;
+  const pos = getPos(e);
+  signCtx.beginPath();
+  signCtx.moveTo(pos.x, pos.y);
+  document.getElementById('sign-placeholder').style.display = 'none';
+  document.getElementById('sign-area').classList.add('signed');
+}
+
+function draw(e) {
+  if (!isDrawing) return;
+  const pos = getPos(e);
+  signCtx.lineTo(pos.x, pos.y);
+  signCtx.stroke();
+}
+
+function stopDraw() { isDrawing = false; }
+
+function clearSign() {
+  if (!signCtx) return;
+  signCtx.clearRect(0, 0, signCanvas.width, signCanvas.height);
+  const ph = document.getElementById('sign-placeholder');
+  if (ph) ph.style.display = 'flex';
+  document.getElementById('sign-area').classList.remove('signed');
+  document.getElementById('signed-badge').style.display = 'none';
+  const btn = document.querySelector('.btn-sign');
+  if (btn) { btn.textContent = '✅ تأكيد الإقرار والتوقيع'; btn.disabled = false; btn.style.opacity = '1'; }
+}
+
+function submitIqrar() {
+  if (!signCanvas) return;
+  // Check if canvas has any drawing
+  const data = signCtx.getImageData(0, 0, signCanvas.width, signCanvas.height).data;
+  const hasDrawing = Array.from(data).some((v, i) => i % 4 === 3 && v > 0);
+  if (!hasDrawing) {
+    alert('⚠️ يرجى رسم توقيعك في المربع أولاً');
+    return;
+  }
+  document.getElementById('signed-badge').style.display = 'flex';
+  const btn = document.querySelector('.btn-sign');
+  btn.textContent = '✅ تم تسجيل الإقرار';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+}
+
 legend.style.cssText = 'display:flex;gap:14px;flex-wrap:wrap;padding:14px 22px 16px;background:#f9f9f9;border-top:1px solid #e0d8c8;font-size:0.76rem;color:#5a6478;';
 legend.innerHTML = `
   <span><span style="background:#d1fae5;color:#065f46;border-radius:50%;display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;">✓</span> تحقق الهدف</span>
@@ -1159,4 +1430,3 @@ legend.innerHTML = `
 document.getElementById('fu-table').insertAdjacentElement('afterend', legend);
 </script>
 </body>
-</html>
