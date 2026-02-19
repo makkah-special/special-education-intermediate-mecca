@@ -1,565 +1,527 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>برنامج يسير التعليمي| مدرسة مكة المكرمة المتوسطة</title>
-  <meta name="description" content="صفحة توعوية لبرنامج يسير التعليمي ضمن برامج قسم ذوي الإعاقة، للمعلمين وأولياء الأمور." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>برنامج يسير التعليمي | مدرسة مكة المكرمة المتوسطة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --primary-light: #2563a8;
+    --accent: #c8973a;
+    --accent-light: #f0b84a;
+    --green: #1a6b4a;
+    --green-light: #22a06b;
+    --bg: #f5f2eb;
+    --card: #ffffff;
+    --border: #e0d8c8;
+    --text: #1a1a2e;
+    --muted: #5a6478;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); }
 
-  <!-- (اختياري) لو تبغى نفس خط الصفحة الرئيسية حرفيًا -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--green) 0%, #0d4a30 60%, #1a6b4a 100%);
+    position: relative; overflow: hidden;
+  }
+  header::after {
+    content:''; position:absolute; bottom:0; left:0; right:0;
+    height:4px; background:linear-gradient(90deg,var(--accent),var(--accent-light),var(--accent));
+  }
+  .header-top {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 40px; border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .header-logos { display:flex; align-items:center; gap:14px; }
+  .logo-icon {
+    width:52px; height:52px; border-radius:50%;
+    background:rgba(255,255,255,0.12); border:2px solid rgba(200,151,58,0.4);
+    display:flex; align-items:center; justify-content:center; font-size:22px;
+  }
+  .header-name { color:rgba(255,255,255,0.9); font-size:0.83rem; font-weight:600; }
+  .header-sub-name { color:rgba(255,255,255,0.5); font-size:0.75rem; }
+  .back-link {
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+    color:rgba(255,255,255,0.85); padding:7px 16px; border-radius:8px;
+    text-decoration:none; font-size:0.82rem; font-weight:600; transition:all 0.2s;
+  }
+  .back-link:hover { background:rgba(255,255,255,0.18); }
+  .hero { padding:50px 40px 60px; text-align:center; }
+  .hero-badge {
+    display:inline-block; background:rgba(200,151,58,0.15);
+    border:1px solid rgba(200,151,58,0.35); color:var(--accent-light);
+    padding:5px 18px; border-radius:20px; font-size:0.8rem; font-weight:600; margin-bottom:18px;
+  }
+  .hero h1 {
+    font-family:'Tajawal',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem);
+    font-weight:900; color:#fff; margin-bottom:12px; line-height:1.3;
+  }
+  .hero h1 span { color:var(--accent-light); }
+  .hero p { color:rgba(255,255,255,0.65); font-size:0.95rem; max-width:520px; margin:0 auto 28px; line-height:1.8; }
+  .hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn-gold {
+    background:linear-gradient(135deg,var(--accent),var(--accent-light));
+    color:var(--primary); padding:11px 26px; border-radius:9px;
+    font-weight:800; font-size:0.9rem; text-decoration:none;
+    box-shadow:0 4px 18px rgba(200,151,58,0.35); transition:all 0.3s;
+  }
+  .btn-gold:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,151,58,0.5); }
+  .btn-outline {
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2);
+    color:rgba(255,255,255,0.9); padding:11px 26px; border-radius:9px;
+    font-weight:700; font-size:0.9rem; text-decoration:none; transition:all 0.2s;
+  }
+  .btn-outline:hover { background:rgba(255,255,255,0.15); }
 
-  <style>
-    :root{
-      /* ✅ Official palette: Navy + MOE green (مطابق لثيم index) */
-      --bg0:#071322;
-      --bg1:#0b1f35;
+  /* NAV */
+  .sticky-nav {
+    background:var(--card); border-bottom:1px solid var(--border);
+    position:sticky; top:0; z-index:100;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06);
+  }
+  .nav-inner {
+    display:flex; overflow-x:auto; padding:0 20px;
+    max-width:900px; margin:0 auto; gap:0;
+    scrollbar-width:none;
+  }
+  .nav-inner::-webkit-scrollbar { display:none; }
+  .nav-link {
+    padding:14px 18px; color:var(--muted); text-decoration:none;
+    font-size:0.82rem; font-weight:700; white-space:nowrap;
+    border-bottom:3px solid transparent; transition:all 0.2s;
+  }
+  .nav-link:hover { color:var(--green); border-bottom-color:var(--green); }
 
-      --card:rgba(255,255,255,.08);
-      --card2:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.14);
+  /* MAIN */
+  main { max-width:860px; margin:0 auto; padding:36px 24px 60px; }
 
-      --text:#EAF0FF;
-      --muted:rgba(234,240,255,.72);
-      --muted2:rgba(234,240,255,.55);
+  /* INTRO CARD */
+  .intro-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:14px; margin-bottom:36px;
+  }
+  .intro-item {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+    border-right:4px solid var(--green);
+  }
+  .intro-item h4 { font-size:0.82rem; font-weight:800; color:var(--green); margin-bottom:6px; }
+  .intro-item p { font-size:0.83rem; color:var(--muted); line-height:1.7; }
 
-      --primary:#0ea37f;
-      --primary2:#0d8f6f;
+  /* SECTION */
+  .section { margin-bottom:40px; }
+  .section-head {
+    font-family:'Tajawal',sans-serif; font-size:1.3rem; font-weight:900;
+    color:var(--primary); margin-bottom:6px;
+    display:flex; align-items:center; gap:10px; padding-bottom:10px;
+    border-bottom:2px solid var(--border);
+  }
+  .section-head span {
+    background:var(--green); color:#fff;
+    width:32px; height:32px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem; flex-shrink:0;
+  }
 
-      --accentA: rgba(14,163,127,.28);
-      --accentB: rgba(14,163,127,.14);
+  /* CONTENT CARD */
+  .content-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; overflow:hidden; margin-bottom:14px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+  }
+  .content-card-head {
+    padding:13px 20px; background:#f8fffe;
+    border-bottom:1px solid var(--border);
+    font-weight:800; font-size:0.9rem; color:var(--primary);
+    display:flex; align-items:center; gap:8px;
+  }
+  .content-card-body { padding:18px 20px; }
+  .content-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .content-list li {
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:0.86rem; color:var(--muted); line-height:1.7;
+  }
+  .content-list li::before {
+    content:'✓'; color:var(--green-light); font-weight:900; flex-shrink:0; margin-top:1px;
+  }
 
-      --good:#2EE59D;
+  /* TWO COL */
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
 
-      --border:rgba(255,255,255,.10);
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
+  /* QUIZ */
+  .quiz-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:22px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.04); margin-bottom:12px;
+  }
+  .quiz-q { font-size:0.88rem; font-weight:700; color:var(--primary); margin-bottom:12px; }
+  .quiz-options { display:flex; flex-direction:column; gap:8px; }
+  .quiz-opt {
+    display:flex; align-items:center; gap:10px;
+    background:#f8f8f8; border:1px solid var(--border);
+    border-radius:9px; padding:10px 14px; cursor:pointer;
+    font-size:0.84rem; transition:all 0.2s;
+  }
+  .quiz-opt input { accent-color:var(--green); width:16px; height:16px; }
+  .quiz-opt:hover { background:#f0faf5; border-color:var(--green-light); }
+  .quiz-opt.correct { background:#d1fae5; border-color:#6ee7b7; color:#065f46; }
+  .quiz-opt.wrong { background:#fee2e2; border-color:#fca5a5; color:#991b1b; }
 
-      --radius: 18px;
-      --max: 1100px;
-      --font: "Tajawal", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Kufi Arabic", Arial;
-    }
+  .quiz-submit {
+    background:linear-gradient(135deg,var(--green),var(--green-light));
+    color:#fff; border:none; padding:12px 28px; border-radius:10px;
+    font-family:'Cairo',sans-serif; font-size:0.9rem; font-weight:800;
+    cursor:pointer; margin-top:16px;
+    box-shadow:0 4px 14px rgba(26,107,74,0.3); transition:all 0.25s;
+  }
+  .quiz-submit:hover { transform:translateY(-2px); }
 
-    *{box-sizing:border-box}
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 20% 20%, var(--accentA), transparent 60%),
-        radial-gradient(1000px 600px at 80% 25%, var(--accentB), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
+  .result-box {
+    display:none; margin-top:16px; padding:14px 18px; border-radius:10px;
+    font-weight:700; font-size:0.9rem;
+  }
 
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px}
+  /* FILES */
+  .file-row {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px; border-bottom:1px solid var(--border);
+    gap:14px; transition:background 0.15s;
+  }
+  .file-row:last-child { border-bottom:none; }
+  .file-row:hover { background:#f8fffe; }
+  .file-left { display:flex; align-items:center; gap:12px; }
+  .file-icon {
+    width:40px; height:40px; border-radius:10px;
+    background:#e6f4ef; display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; flex-shrink:0;
+  }
+  .file-name { font-size:0.88rem; font-weight:700; color:var(--primary); }
+  .file-type { font-size:0.75rem; color:var(--muted); margin-top:2px; }
+  .btn-download {
+    background:linear-gradient(135deg,var(--green),var(--green-light));
+    color:#fff; padding:7px 16px; border-radius:8px;
+    text-decoration:none; font-size:0.8rem; font-weight:700;
+    white-space:nowrap; transition:all 0.2s; flex-shrink:0;
+  }
+  .btn-download:hover { transform:translateY(-1px); }
 
-    /* ===== زر لوحة المتابعة التفاعلية ===== */
-    .dashboard-banner{
-      display:flex;
-      justify-content:center;
-      margin: 0 0 14px;
-    }
-    .dashboard-banner a{
-      background: linear-gradient(135deg, rgba(14,163,127,.95), rgba(13,143,111,.92));
-      padding:14px 26px;
-      border-radius:16px;
-      font-weight:800;
-      font-size:15px;
-      color:#fff;
-      box-shadow: 0 14px 30px rgba(14,163,127,.22);
-      transition:.25s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      border: 1px solid rgba(255,255,255,.12);
-    }
-    .dashboard-banner a:hover{
-      transform:translateY(-2px);
-      box-shadow: 0 18px 40px rgba(14,163,127,.28);
-    }
-    .dashboard-banner svg{width:18px; height:18px}
+  /* FOOTER */
+  footer {
+    background:var(--primary); color:rgba(255,255,255,0.65);
+    text-align:center; padding:22px 40px; font-size:0.8rem;
+    border-top:3px solid var(--accent);
+  }
+  footer strong { color:var(--accent-light); }
 
-    /* Header */
-    .hero{
-      border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius: calc(var(--radius) + 6px);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .hero-inner{padding:26px 22px 18px}
-    .toprow{
-      display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-    }
-    .badge{
-      width:44px; height:44px; border-radius:14px;
-      background: linear-gradient(135deg, rgba(14,163,127,.95), rgba(13,143,111,.92));
-      display:grid; place-items:center;
-      box-shadow: 0 10px 18px rgba(14,163,127,.18);
-    }
-    .badge svg{width:22px; height:22px}
-    h1{margin:0; font-size:22px; letter-spacing:.2px}
-    .subtitle{margin:6px 0 0; color:var(--muted); font-size:14px; line-height:1.7}
+  /* FADE */
+  .fade-in { opacity:0; transform:translateY(18px); transition:all 0.5s ease; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
 
-    /* Nav */
-    .nav{
-      margin-top:16px;
-      display:flex; flex-wrap:wrap; gap:10px;
-      padding:12px 14px;
-      border-top:1px solid var(--border);
-      background: var(--card2);
-    }
-    .chip{
-      padding:10px 12px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-      font-size:13px;
-      display:flex; align-items:center; gap:8px;
-      transition:.2s ease;
-    }
-    .chip:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.18)}
-    .chip svg{width:16px; height:16px; opacity:.95}
-
-    /* Section */
-    section{margin-top:18px}
-    .section-card{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
-      padding:18px 16px;
-    }
-    h2{margin:0 0 10px; font-size:18px}
-    h3{margin:16px 0 8px; font-size:15px}
-    p{margin:0; color:var(--muted); line-height:1.9; font-size:14px}
-
-    /* Buttons */
-    .cta{
-      margin-top:14px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .btn{
-      padding:12px 14px;
-      border-radius: 14px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      display:inline-flex; align-items:center; gap:10px;
-      font-size:14px;
-      transition:.2s ease;
-      color:var(--text);
-    }
-    .btn.primary{
-      border:1px solid rgba(14,163,127,.45);
-      background: linear-gradient(135deg, rgba(14,163,127,.95), rgba(13,143,111,.92));
-      box-shadow: 0 12px 20px rgba(14,163,127,.18);
-      color:#fff;
-    }
-    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.09)}
-    .btn.primary:hover{filter:brightness(1.03)}
-    .btn svg{width:18px; height:18px}
-
-    /* Grid cards */
-    .grid{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-    }
-    .kpi{
-      grid-column: span 4;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--radius);
-      padding:14px;
-      display:flex; gap:12px;
-      align-items:flex-start;
-    }
-    .kpi .icon{
-      width:42px; height:42px; border-radius:14px;
-      background: rgba(14,163,127,.14);
-      display:grid; place-items:center;
-      border:1px solid rgba(14,163,127,.24);
-      flex:0 0 auto;
-    }
-    .kpi .icon svg{width:20px; height:20px}
-    .kpi strong{display:block; margin-top:1px}
-    .kpi small{display:block; color:var(--muted); margin-top:6px; line-height:1.7}
-    @media (max-width:900px){ .kpi{grid-column: span 6;} }
-    @media (max-width:560px){ .kpi{grid-column: span 12;} }
-
-    /* List */
-    ul{margin:8px 0 0; padding:0 18px 0 0; color:var(--muted); line-height:1.9; font-size:14px}
-    li{margin:6px 0}
-
-    /* Footer */
-    .footer{
-      margin-top:14px;
-      padding-top:12px;
-      border-top:1px solid var(--border);
-      display:flex; gap:10px; justify-content:space-between; flex-wrap:wrap;
-      color:var(--muted);
-      font-size:12.5px;
-    }
-    .muted{color:var(--muted)}
-
-    /* Quiz */
-    .quiz-form { margin-top: 14px; }
-    .q {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 14px;
-      padding: 14px;
-      margin: 12px 0;
-    }
-    .q-title {
-      font-weight: 800;
-      margin-bottom: 10px;
-      line-height: 1.8;
-    }
-    .opt {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      margin: 8px 0;
-      line-height: 1.9;
-      cursor: pointer;
-    }
-    .opt input[type="radio"]{
-      margin-top: 6px;
-      transform: scale(1.05);
-    }
-    .quiz-actions {
-      margin-top: 14px;
-      display: flex;
-      justify-content: center;
-    }
-    .quiz-result{
-      margin-top: 14px;
-      text-align: center;
-      font-weight: 800;
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(0,0,0,.18);
-      border: 1px solid rgba(255,255,255,.10);
-    }
-  </style>
+  @media(max-width:640px) {
+    .header-top { padding:12px 18px; }
+    .hero { padding:36px 18px 44px; }
+    main { padding:24px 16px 40px; }
+    .two-col { grid-template-columns:1fr; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
 
-    <div class="dashboard-banner">
-      <a href="https://makkah-special.github.io/dashboard.html" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M4 19h16M6 17l4-6 4 3 4-8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        الدخول إلى لوحة المتابعة التفاعلية
-      </a>
+<header>
+  <div class="header-top">
+    <div class="header-logos">
+      <div class="logo-icon">📘</div>
+      <div>
+        <div class="header-name">مدرسة مكة المكرمة المتوسطة</div>
+        <div class="header-sub-name">قسم ذوي الإعاقة — برنامج يسير</div>
+      </div>
     </div>
+    <a href="index.html" class="back-link">← الرئيسية</a>
+  </div>
+  <div class="hero">
+    <div class="hero-badge">📘 برنامج يسير التعليمي</div>
+    <h1>برنامج <span>يسير</span> التعليمي</h1>
+    <p>صفحة توعوية للمعلمين وأولياء الأمور — ضمن برامج قسم ذوي الإعاقة في مدرسة مكة المكرمة المتوسطة</p>
+    <div class="hero-btns">
+      <a href="#definition" class="btn-gold">ابدأ من التعريف</a>
+      <a href="#forms" class="btn-outline">📎 النماذج والملفات</a>
+      <a href="https://makkah-special.github.io/dashboard.html" class="btn-outline">📊 لوحة المتابعة</a>
+    </div>
+  </div>
+</header>
 
-    <header class="hero" id="top">
-      <div class="hero-inner">
-        <div class="toprow">
-          <div class="brand">
-            <div class="badge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 2l1.6 6.1L20 10l-6.4 1.9L12 18l-1.6-6.1L4 10l6.4-1.9L12 2z" stroke="white" stroke-width="1.6" opacity=".95"/>
-              </svg>
-            </div>
-            <div>
-              <h1>برنامج يسير التعليمي</h1>
-              <p class="subtitle">ضمن برامج قسم ذوي الإعاقة في مدرسة مكة المكرمة المتوسطة — صفحة توعوية للمعلمين وأولياء الأمور</p>
-            </div>
-          </div>
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a href="#definition" class="nav-link">🔍 تعريف البرنامج</a>
+    <a href="#eligibility" class="nav-link">✅ الأهلية والقبول</a>
+    <a href="#teachers" class="nav-link">👨‍🏫 للمعلمين</a>
+    <a href="#parents" class="nav-link">👨‍👩‍👦 لأولياء الأمور</a>
+    <a href="#quiz" class="nav-link">🧠 اختبر نفسك</a>
+    <a href="#forms" class="nav-link">📎 النماذج</a>
+  </div>
+</nav>
 
-          <div class="cta">
-            <a class="btn primary" href="#definition">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M8 5h8M8 12h8M8 19h8" stroke="white" stroke-width="1.7" stroke-linecap="round"/></svg>
-              ابدأ من التعريف
-            </a>
-            <a class="btn" href="#forms">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 4h10v16H7z" stroke="white" stroke-width="1.6"/><path d="M9 8h6M9 12h6M9 16h4" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-              النماذج
-            </a>
-          </div>
-        </div>
-      </div>
+<main>
 
-      <nav class="nav" aria-label="التنقّل">
-        <a class="chip" href="index.html">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5l8-6 8 6V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5z" stroke="white" stroke-width="1.6"/></svg>
-          الرئيسية
-        </a>
-        <a class="chip" href="#definition">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 7h8M12 12h8M12 17h8" stroke="white" stroke-width="1.6" stroke-linecap="round"/><path d="M4.5 7.5l1.5 1.5 3-3" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-          تعريف البرنامج
-        </a>
-        <a class="chip" href="#eligibility">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M6 12l4 4 8-10" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          الأهلية والقبول
-        </a>
-        <a class="chip" href="#teachers">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 6l8-3 8 3-8 3-8-3z" stroke="white" stroke-width="1.6"/><path d="M6 10v6c0 2 3 4 6 4s6-2 6-4v-6" stroke="white" stroke-width="1.6"/></svg>
-          للمعلمين
-        </a>
-        <a class="chip" href="#parents">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M8 20v-2a4 4 0 0 1 8 0v2" stroke="white" stroke-width="1.6"/><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z" stroke="white" stroke-width="1.6"/></svg>
-          لأولياء الأمور
-        </a>
-        <a class="chip" href="#quiz">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18h.01" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M9 9a3 3 0 1 1 4.5 2.6c-.9.5-1.5 1.2-1.5 2.4" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-          اختبر نفسك
-        </a>
-        <a class="chip" href="#forms">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l3 3v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/><path d="M9 10h6M9 14h6M9 18h4" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-          النماذج
-        </a>
-      </nav>
-    </header>
-
-    <!-- Intro -->
-    <section class="section-card" aria-label="مقدمة">
-      <h2>نبذة عن برنامج يسير التعليمي</h2>
-      <p>
-        صفحة توعوية توضّح فكرة البرنامج، الفئة المستهدفة، مكان تقديم الخدمة، وآلية العمل داخل المدرسة، مع نقاط عملية للمعلمين وأولياء الأمور.
-        (عدّل النص هنا حسب اعتمادكم داخل المدرسة).
-      </p>
-
-      <div class="grid" role="list">
-        <div class="kpi" role="listitem">
-          <div class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="white" stroke-width="1.6" opacity=".9"/></svg>
-          </div>
-          <div>
-            <strong>الفئة المستهدفة</strong>
-            <small>طلاب لديهم خصائص طلاب بطئ التعلم ويحتاجون دعمًا تربويًا وفق خطط فردية.</small>
-          </div>
-        </div>
-
-        <div class="kpi" role="listitem">
-          <div class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.4-7-11a7 7 0 0 1 14 0c0 6.6-7 11-7 11z" stroke="white" stroke-width="1.6"/></svg>
-          </div>
-          <div>
-            <strong>مكان تقديم الخدمة</strong>
-            <small>داخل المدرسة عبر الدمج قدر الإمكان، وغرفة مصادر/جلسات دعم حسب الخطة.</small>
-          </div>
-        </div>
-
-        <div class="kpi" role="listitem">
-          <div class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16M6 17l4-6 4 3 4-8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div>
-            <strong>هدف البرنامج</strong>
-            <small>تنمية مهارات التواصل والسلوك التكيفي والمهارات الأكاديمية والحياتية.</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Definition -->
-    <section id="definition" class="section-card">
-      <h2>أولًا: تعريف بطء الذكاء الحدي والبرنامج</h2>
-      <h3>ما هو الذكاء الحدي؟</h3>
-      <ul>
-        <li>قدرات عقلية تقع بين الإعاقة الفكرية والقدرات العقلية العامة.</li>
-        <li>درجة ذكاء تقريبية تتراوح بين 70–80 على اختبار ستانفورد–بينيه (الصورة الخامسة) أو ما يعادلها من الاختبارات المقننة.</li>
-      </ul>
-
-      <h3>ما هو برنامج يسير التعليمي؟</h3>
-      <p>
-        برنامج يسير هو أحد البرامج التعليمية في مدارس التعليم العام، صُمم لخدمة الطلبة ذوي الذكاء الحدي من خلال:
-      </p>
-    </section>
-
-    <!-- Eligibility -->
-    <section id="eligibility" class="section-card">
-      <h2>ثانيًا: الأهلية والقبول وخدمات البرنامج</h2>
-      <h3>معايير الأهلية والقبول</h3>
-      <ul>
-        <li>أن تكون درجة ذكاء الطالب بين 70–80 مع انخفاض في السلوك التكيفي.</li>
-        <li>ألا تكون المشكلة ناتجة مباشرة عن إعاقة أخرى مصاحبة.</li>
-        <li>وجود تكرار في الرسوب الدراسي لأسباب غير أسرية أو اجتماعية أو صحية.</li>
-        <li>موافقة فريق عمل التربية الخاصة برئاسة قائد المدرسة أو الوكيل.</li>
-        <li>يبدأ القبول من الصف الثاني الابتدائي، ويستمر حتى المرحلة المتوسطة والثانوية ما دامت الأهلية متحققة.</li>
-        <li>يتم التحاق الطالب بالبرنامج في السنة التالية لسنة رسوبه أو سنة تشخيص حالته.</li>
-      </ul>
-
-      <h3>المكان التربوي وخدمات البرنامج</h3>
-      <ul>
-        <li>يلتحق الطالب في فصل التعليم العام مع زملائه.</li>
-        <li>تُفتتح برامج يسير في المدارس الحكومية التي تتوفر فيها المتطلبات.</li>
-        <li>ألا تزيد نسبة الطلبة ذوي الإعاقة عن 20٪ من إجمالي طلبة المدرسة.</li>
-        <li>ألا يزيد عدد الطلبة ذوي الذكاء الحدي في الفصل عن ثلاثة طلبة.</li>
-        <li>تُقدم خدمات غرفة المصادر بما لا يتجاوز 50٪ من اليوم الدراسي (مع إمكانية الزيادة في حالات محددة حسب البرنامج التربوي الفردي).</li>
-        <li>يستفيد الطلبة من الخدمات المساندة (نطق، علاج وظيفي، إرشاد نفسي) بحسب احتياجهم.</li>
-        <li>يستفيد طلبة البرنامج من النقل المدرسي والمكافأة الشهرية وفق اللوائح المنظمة.</li>
-      </ul>
-    </section>
-
-    <!-- Teachers -->
-    <section id="teachers" class="section-card">
-      <h2>ثالثًا: دليل المعلمين في برنامج يسير التعليمي</h2>
-      <h3>مهام معلم التربية الخاصة</h3>
-      <ul>
-        <li>إعداد الخطة التربوية الفردية (IEP) ومتابعة التنفيذ.</li>
-        <li>تقديم أدوات دعم بصري/سلوكي وتدريب الطالب عليها.</li>
-        <li>التنسيق مع معلمي المواد بشأن التكييفات والتقويم.</li>
-      </ul>
-
-      <h3>مهام معلم التعليم العام</h3>
-      <ul>
-        <li>تهيئة بيئة الصف وتقليل المشتتات.</li>
-        <li>تقسيم الواجبات وتوضيح المتوقع خطوة بخطوة.</li>
-        <li>مشاركة البيانات مع فريق البرنامج بشكل دوري.</li>
-      </ul>
-    </section>
-
-    <!-- Parents -->
-    <section id="parents" class="section-card">
-      <h2>رابعًا: حقوق ومسؤوليات الأسرة</h2>
-      <h3>حقوق الأسرة</h3>
-      <ul>
-        <li>الاطلاع على الخطة الفردية والمشاركة في القرارات.</li>
-        <li>توضيح الخدمات المقدمة وما يقابلها من أهداف.</li>
-        <li>الحفاظ على سرية بيانات الطالب.</li>
-      </ul>
-
-      <h3>مسؤوليات الأسرة</h3>
-      <ul>
-        <li>الالتزام بخطة المتابعة المنزلية (روتين/تعزيز/تواصل).</li>
-        <li>إبلاغ المدرسة بأي تغييرات مؤثرة في سلوك الطالب أو صحته.</li>
-        <li>حضور الاجتماعات ومشاركة الملاحظات.</li>
-      </ul>
-    </section>
-
-    <!-- Quiz -->
-    <section class="section-card" id="quiz">
-      <h2>خامساً: اختبر معلوماتك عن برنامج يسير</h2>
-      <p class="muted">اختبار قصير موجّه لقائد المدرسة والمعلمين وأولياء الأمور.</p>
-
-      <form id="quizForm" class="quiz-form">
-        <div class="q">
-          <div class="q-title">1) نطاق درجة الذكاء الحدّي للطلبة المستهدفين في برنامج يسير هو تقريباً:</div>
-          <label class="opt"><input type="radio" name="q1" value="0"> 50-60</label>
-          <label class="opt"><input type="radio" name="q1" value="1"> 70-80</label>
-          <label class="opt"><input type="radio" name="q1" value="0"> 90-110</label>
-        </div>
-
-        <div class="q">
-          <div class="q-title">2) أين يتلقى طالب يسير تعليمه في الأصل؟</div>
-          <label class="opt"><input type="radio" name="q2" value="1"> في فصل التعليم العام مع الاستفادة من غرفة المصادر.</label>
-          <label class="opt"><input type="radio" name="q2" value="0"> في معهد التربية الفكرية فقط.</label>
-        </div>
-
-        <div class="q">
-          <div class="q-title">3) الحد الأعلى المعتاد للوقت الذي يقضيه الطالب في غرفة المصادر هو:</div>
-          <label class="opt"><input type="radio" name="q3" value="1"> لا يزيد عن 50% من اليوم الدراسي.</label>
-          <label class="opt"><input type="radio" name="q3" value="0"> اليوم الدراسي كاملاً.</label>
-        </div>
-
-        <div class="q">
-          <div class="q-title">4) يبدأ القبول في برنامج يسير لطلبة ذوي الذكاء الحدّي من:</div>
-          <label class="opt"><input type="radio" name="q4" value="0"> الصف الأول الابتدائي.</label>
-          <label class="opt"><input type="radio" name="q4" value="1"> الصف الثاني الابتدائي.</label>
-          <label class="opt"><input type="radio" name="q4" value="0"> المرحلة المتوسطة فقط.</label>
-        </div>
-
-        <div class="q">
-          <div class="q-title">5) من عناصر البرنامج التربوي الفردي لطالب يسير:</div>
-          <label class="opt"><input type="radio" name="q5" value="1"> أهداف تعليمية فردية واستراتيجيات تدريس وتقويم مناسب.</label>
-          <label class="opt"><input type="radio" name="q5" value="0"> نفس أهداف الفصل العام دون أي تكييف.</label>
-        </div>
-
-        <div class="q">
-          <div class="q-title">6) الهدف الرئيس لبرنامج يسير هو:</div>
-          <label class="opt"><input type="radio" name="q6" value="1"> دعم الطلبة ذوي الذكاء الحدّي أكاديمياً ومهارياً داخل بيئة المدرسة.</label>
-          <label class="opt"><input type="radio" name="q6" value="0"> عزل الطالب عن التعليم العام بشكل كامل.</label>
-        </div>
-
-        <div class="q">
-          <div class="q-title">7) من أهم عوامل نجاح خطة يسير:</div>
-          <label class="opt"><input type="radio" name="q7" value="1"> التنسيق بين الأسرة والمدرسة ومتابعة الخطة.</label>
-          <label class="opt"><input type="radio" name="q7" value="0"> تغيير الخطة يومياً دون بيانات.</label>
-        </div>
-
-        <div class="quiz-actions">
-          <button type="button" class="btn primary" onclick="calculateScore()">عرض النتيجة</button>
-        </div>
-      </form>
-
-      <div id="result" class="quiz-result" aria-live="polite"></div>
-    </section>
-
-    <script>
-      function calculateScore() {
-        const total = 7;
-        let score = 0;
-
-        for (let i = 1; i <= total; i++) {
-          const picked = document.querySelector(`input[name="q${i}"]:checked`);
-          if (!picked) {
-            document.getElementById("result").innerText = "فضلاً أجب على جميع الأسئلة قبل عرض النتيجة.";
-            return;
-          }
-          score += Number(picked.value);
-        }
-
-        const percent = Math.round((score / total) * 100);
-        document.getElementById("result").innerText =
-          `عدد الإجابات الصحيحة: ${score} من ${total} — نتيجتك: ${percent}%`;
-      }
-    </script>
-
-    <!-- Forms -->
-    <section id="forms" class="section-card">
-      <h2>سادسًا: النماذج والملفات</h2>
-      <p>روابط تحميل (عدّلها حسب ملفاتكم في Canva/Drive/موقع المدرسة):</p>
-
-      <h3>نماذج الخطط التربوية الفردية (IEP)</h3>
-      <ul>
-        <li><a class="btn" href="iep-math-level1-2026.pdf" target="_blank">خطة رياضيات المستوى الأول 2026</a></li>
-        <li><a class="btn" href="iep-math-level2-2026.pdf" target="_blank">خطة رياضيات المستوى الثاني 2026</a></li>
-        <li><a class="btn" href="iep-arabic-level1-2026.pdf" target="_blank">خطة لغتي المستوى الأول 2026</a></li>
-        <li><a class="btn" href="iep-arabic-level2-2026.pdf" target="_blank">خطة لغتي المستوى الثاني 2026</a></li>
-      </ul>
-
-      <h3>نموذج متابعة أسبوعية</h3>
-      <ul>
-        <li><a class="btn" href="#" onclick="alert('ضع رابط التحميل هنا');return false;">رابط التحميل</a></li>
-      </ul>
-
-      <h3>نموذج تواصل مع الأسرة</h3>
-      <ul>
-        <li><a class="btn" href="#" onclick="alert('ضع رابط التحميل هنا');return false;">رابط التحميل</a></li>
-      </ul>
-
-      <div class="footer">
-        <div>إعداد وتنفيذ: أ. سعد الزهراني — قسم ذوي الإعاقة</div>
-        <div>© <span id="y"></span> جميع الحقوق محفوظة</div>
-      </div>
-    </section>
-
-    <section class="section-card" style="margin-top:12px;">
-      <a class="btn" href="#top">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6" stroke="white" stroke-width="1.7" stroke-linecap="round"/><path d="M7 10l5-5 5 5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        رجوع للأعلى
-      </a>
-      <p style="margin-top:10px;" class="muted">ملاحظة: هذه الصفحة توعوية ولا تغني عن التشخيص الطبي/النفسي المتخصص.</p>
-    </section>
+  <!-- INTRO -->
+  <div class="intro-grid fade-in">
+    <div class="intro-item">
+      <h4>👥 الفئة المستهدفة</h4>
+      <p>طلاب لديهم خصائص بطء التعلم ويحتاجون دعمًا تربويًا وفق خطط فردية</p>
+    </div>
+    <div class="intro-item">
+      <h4>🏫 مكان تقديم الخدمة</h4>
+      <p>داخل المدرسة عبر الدمج قدر الإمكان وغرفة مصادر حسب الخطة</p>
+    </div>
+    <div class="intro-item">
+      <h4>🎯 هدف البرنامج</h4>
+      <p>تنمية مهارات التواصل والسلوك التكيفي والمهارات الأكاديمية والحياتية</p>
+    </div>
   </div>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <!-- DEFINITION -->
+  <div class="section fade-in" id="definition">
+    <div class="section-head"><span>١</span> تعريف الذكاء الحدي والبرنامج</div>
+
+    <div class="two-col">
+      <div class="content-card">
+        <div class="content-card-head">🧠 ما هو الذكاء الحدي؟</div>
+        <div class="content-card-body">
+          <ul class="content-list">
+            <li>قدرات عقلية تقع بين الإعاقة الفكرية والقدرات العقلية العامة</li>
+            <li>درجة ذكاء تتراوح بين 70–80 على اختبار ستانفورد–بينيه أو ما يعادله</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-head">📘 ما هو برنامج يسير؟</div>
+        <div class="content-card-body">
+          <ul class="content-list">
+            <li>برنامج تعليمي في مدارس التعليم العام لخدمة الطلبة ذوي الذكاء الحدي</li>
+            <li>يعتمد على خطط فردية وأهداف قابلة للقياس والمتابعة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ELIGIBILITY -->
+  <div class="section fade-in" id="eligibility">
+    <div class="section-head"><span>٢</span> الأهلية والقبول وخدمات البرنامج</div>
+
+    <div class="content-card" style="margin-bottom:14px;">
+      <div class="content-card-head">✅ معايير الأهلية والقبول</div>
+      <div class="content-card-body">
+        <ul class="content-list">
+          <li>أن تكون درجة ذكاء الطالب بين 70–80 مع انخفاض في السلوك التكيفي</li>
+          <li>ألا تكون المشكلة ناتجة مباشرة عن إعاقة أخرى مصاحبة</li>
+          <li>وجود تكرار في الرسوب لأسباب غير أسرية أو اجتماعية أو صحية</li>
+          <li>موافقة فريق التربية الخاصة برئاسة قائد المدرسة أو الوكيل</li>
+          <li>يبدأ القبول من الصف الثاني الابتدائي ويستمر حتى المرحلة الثانوية</li>
+          <li>يلتحق الطالب في السنة التالية لسنة رسوبه أو تشخيص حالته</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-card-head">🏫 المكان التربوي وخدمات البرنامج</div>
+      <div class="content-card-body">
+        <ul class="content-list">
+          <li>يلتحق الطالب في فصل التعليم العام مع زملائه</li>
+          <li>ألا تزيد نسبة الطلبة ذوي الإعاقة عن 20٪ من إجمالي طلبة المدرسة</li>
+          <li>ألا يزيد عدد طلبة الذكاء الحدي في الفصل عن ثلاثة طلبة</li>
+          <li>تُقدم خدمات غرفة المصادر بما لا يتجاوز 50٪ من اليوم الدراسي</li>
+          <li>يستفيد الطلبة من الخدمات المساندة (نطق، علاج وظيفي، إرشاد نفسي)</li>
+          <li>يستفيد طلبة البرنامج من النقل المدرسي والمكافأة الشهرية</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEACHERS -->
+  <div class="section fade-in" id="teachers">
+    <div class="section-head"><span>٣</span> دليل المعلمين في برنامج يسير</div>
+    <div class="two-col">
+      <div class="content-card">
+        <div class="content-card-head">📋 مهام معلم التربية الخاصة</div>
+        <div class="content-card-body">
+          <ul class="content-list">
+            <li>إعداد الخطة التربوية الفردية (IEP) ومتابعة التنفيذ</li>
+            <li>تقديم أدوات دعم بصري/سلوكي وتدريب الطالب عليها</li>
+            <li>التنسيق مع معلمي المواد بشأن التكييفات والتقويم</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-head">👨‍🏫 مهام معلم التعليم العام</div>
+        <div class="content-card-body">
+          <ul class="content-list">
+            <li>تهيئة بيئة الصف وتقليل المشتتات</li>
+            <li>تقسيم الواجبات وتوضيح المتوقع خطوة بخطوة</li>
+            <li>مشاركة البيانات مع فريق البرنامج بشكل دوري</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARENTS -->
+  <div class="section fade-in" id="parents">
+    <div class="section-head"><span>٤</span> حقوق ومسؤوليات الأسرة</div>
+    <div class="two-col">
+      <div class="content-card">
+        <div class="content-card-head">⭐ حقوق الأسرة</div>
+        <div class="content-card-body">
+          <ul class="content-list">
+            <li>الاطلاع على الخطة الفردية والمشاركة في القرارات</li>
+            <li>توضيح الخدمات المقدمة وما يقابلها من أهداف</li>
+            <li>الحفاظ على سرية بيانات الطالب</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="content-card-head">📌 مسؤوليات الأسرة</div>
+        <div class="content-card-body">
+          <ul class="content-list">
+            <li>الالتزام بخطة المتابعة المنزلية (روتين/تعزيز/تواصل)</li>
+            <li>إبلاغ المدرسة بأي تغييرات مؤثرة في سلوك الطالب</li>
+            <li>حضور الاجتماعات ومشاركة الملاحظات</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section fade-in" id="quiz">
+    <div class="section-head"><span>٥</span> اختبر معلوماتك عن برنامج يسير</div>
+
+    <div id="quiz-container">
+      <div class="quiz-card">
+        <div class="quiz-q">١) نطاق درجة الذكاء الحدّي للطلبة المستهدفين في برنامج يسير هو تقريباً:</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q1" value="a"> 50-60</label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="b"> 70-80</label>
+          <label class="quiz-opt"><input type="radio" name="q1" value="c"> 90-110</label>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-q">٢) أين يتلقى طالب يسير تعليمه في الأصل؟</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q2" value="a"> في فصل التعليم العام مع الاستفادة من غرفة المصادر</label>
+          <label class="quiz-opt"><input type="radio" name="q2" value="b"> في معهد التربية الفكرية فقط</label>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-q">٣) الحد الأعلى للوقت في غرفة المصادر هو:</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q3" value="a"> لا يزيد عن 50% من اليوم الدراسي</label>
+          <label class="quiz-opt"><input type="radio" name="q3" value="b"> اليوم الدراسي كاملاً</label>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-q">٤) يبدأ القبول في برنامج يسير من:</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q4" value="a"> الصف الأول الابتدائي</label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="b"> الصف الثاني الابتدائي</label>
+          <label class="quiz-opt"><input type="radio" name="q4" value="c"> المرحلة المتوسطة فقط</label>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-q">٥) من أهم عوامل نجاح خطة يسير:</div>
+        <div class="quiz-options">
+          <label class="quiz-opt"><input type="radio" name="q5" value="a"> التنسيق بين الأسرة والمدرسة ومتابعة الخطة</label>
+          <label class="quiz-opt"><input type="radio" name="q5" value="b"> تغيير الخطة يومياً دون بيانات</label>
+        </div>
+      </div>
+      <button class="quiz-submit" onclick="checkQuiz()">📊 عرض النتيجة</button>
+      <div class="result-box" id="result-box"></div>
+    </div>
+  </div>
+
+  <!-- FORMS -->
+  <div class="section fade-in" id="forms">
+    <div class="section-head"><span>٦</span> النماذج والملفات</div>
+    <div class="content-card">
+      <div class="content-card-head">📋 نماذج الخطط التربوية الفردية (IEP)</div>
+      <div class="file-row">
+        <div class="file-left">
+          <div class="file-icon">📐</div>
+          <div>
+            <div class="file-name">خطة رياضيات المستوى الأول 2026</div>
+            <div class="file-type">PDF — خطة فردية</div>
+          </div>
+        </div>
+        <a href="iep-math-level1-2026.pdf" class="btn-download" target="_blank">⬇️ تحميل</a>
+      </div>
+      <div class="file-row">
+        <div class="file-left">
+          <div class="file-icon">📐</div>
+          <div>
+            <div class="file-name">خطة رياضيات المستوى الثاني 2026</div>
+            <div class="file-type">PDF — خطة فردية</div>
+          </div>
+        </div>
+        <a href="iep-math-level2-2026.pdf" class="btn-download" target="_blank">⬇️ تحميل</a>
+      </div>
+      <div class="file-row">
+        <div class="file-left">
+          <div class="file-icon">📖</div>
+          <div>
+            <div class="file-name">خطة لغتي المستوى الأول 2026</div>
+            <div class="file-type">PDF — خطة فردية</div>
+          </div>
+        </div>
+        <a href="iep-arabic-level1-2026.pdf" class="btn-download" target="_blank">⬇️ تحميل</a>
+      </div>
+      <div class="file-row">
+        <div class="file-left">
+          <div class="file-icon">📖</div>
+          <div>
+            <div class="file-name">خطة لغتي المستوى الثاني 2026</div>
+            <div class="file-type">PDF — خطة فردية</div>
+          </div>
+        </div>
+        <a href="iep-arabic-level2-2026.pdf" class="btn-download" target="_blank">⬇️ تحميل</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 مدرسة مكة المكرمة المتوسطة — قسم ذوي الإعاقة<br>
+  <strong>إعداد وتنفيذ: أ. سعد الزهراني</strong>
+</footer>
+
+<script>
+  // QUIZ
+  const answers = { q1:'b', q2:'a', q3:'a', q4:'b', q5:'a' };
+  function checkQuiz() {
+    let score = 0;
+    Object.keys(answers).forEach(q => {
+      const selected = document.querySelector(`input[name="${q}"]:checked`);
+      document.querySelectorAll(`input[name="${q}"]`).forEach(r => {
+        const opt = r.closest('.quiz-opt');
+        if (r.value === answers[q]) opt.classList.add('correct');
+        else if (selected && r.value === selected.value) opt.classList.add('wrong');
+      });
+      if (selected && selected.value === answers[q]) score++;
+    });
+    const rb = document.getElementById('result-box');
+    rb.style.display = 'block';
+    if (score === 5) { rb.style.background='#d1fae5'; rb.style.color='#065f46'; rb.style.border='1px solid #6ee7b7'; rb.textContent=`🏆 ممتاز! حصلت على ${score}/5`; }
+    else if (score >= 3) { rb.style.background='#fef3c7'; rb.style.color='#92400e'; rb.style.border='1px solid #fde68a'; rb.textContent=`👍 جيد! حصلت على ${score}/5`; }
+    else { rb.style.background='#fee2e2'; rb.style.color='#991b1b'; rb.style.border='1px solid #fca5a5'; rb.textContent=`📚 حصلت على ${score}/5 — راجع المحتوى أعلاه`; }
+  }
+
+  // FADE IN
+  const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.08});
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
