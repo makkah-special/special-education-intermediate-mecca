@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -259,16 +259,24 @@ function loadStudentUploads() {
 }
 
 async function checkExistingFiles(pin) {
+  const extensions = ['pdf', 'PDF', 'docx', 'doc', 'jpg', 'png'];
   for (const r of REPORT_TYPES) {
-    try {
-      const fileName = `${r.key}-${pin}.pdf`;
-      const url = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${fileName}`;
-      const res = await fetch(url, { method: 'HEAD' });
-      if (res.ok) {
-        showStatus(r.key, 'exists', '✅ يوجد ملف مرفوع مسبقاً — يمكنك استبداله');
-        document.getElementById(`del-btn-${r.key}`).style.display = 'block';
-      }
-    } catch(e) {}
+    for (const ext of extensions) {
+      try {
+        const fileName = `${r.key}-${pin}.${ext}`;
+        const url = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${fileName}`;
+        const res = await fetch(url, { method: 'HEAD' });
+        if (res.ok) {
+          showStatus(r.key, 'exists', `✅ يوجد ملف مرفوع — ${fileName}`);
+          document.getElementById(`del-btn-${r.key}`).style.display = 'block';
+          document.getElementById(`fname-${r.key}`).textContent = fileName;
+          // عرض معاينة الملف الموجود
+          document.getElementById(`preview-name-${r.key}`).textContent = fileName;
+          document.getElementById(`preview-${r.key}`).style.display = 'flex';
+          break;
+        }
+      } catch(e) {}
+    }
   }
 }
 
