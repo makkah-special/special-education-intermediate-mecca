@@ -92,6 +92,8 @@
 
   .progress-bar { height:4px; background:#e0d8c8; border-radius:2px; margin-top:8px; display:none; overflow:hidden; }
   .progress-fill { height:100%; background:linear-gradient(90deg,var(--green),var(--green-light)); border-radius:2px; transition:width 0.3s; width:0%; }
+  .btn-delete { width:100%; padding:9px; background:#fee2e2; color:#dc2626; border:1px solid #fca5a5; border-radius:9px; font-family:'Cairo',sans-serif; font-size:0.82rem; font-weight:800; cursor:pointer; margin-top:6px; transition:all 0.2s; }
+  .btn-delete:hover { background:#dc2626; color:#fff; }
 
   footer { background:var(--primary); color:rgba(255,255,255,0.6); text-align:center; padding:18px; font-size:0.78rem; border-top:3px solid var(--accent); }
   footer strong { color:var(--accent-light); }
@@ -245,6 +247,9 @@ function loadStudentUploads() {
         <button class="btn-upload" id="btn-${r.key}" onclick="uploadFile('${r.key}','${pin}')">
           ⬆️ رفع الملف
         </button>
+        <button class="btn-delete" id="del-btn-${r.key}" onclick="deleteFile('${r.key}','${pin}')" style="display:none;">
+          🗑️ حذف الملف المرفوع
+        </button>
       </div>
     </div>
   `).join('');
@@ -259,7 +264,10 @@ async function checkExistingFiles(pin) {
       const fileName = `${r.key}-${pin}.pdf`;
       const url = `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${fileName}`;
       const res = await fetch(url, { method: 'HEAD' });
-      if (res.ok) showStatus(r.key, 'exists', '✅ يوجد ملف مرفوع مسبقاً — يمكنك استبداله');
+      if (res.ok) {
+        showStatus(r.key, 'exists', '✅ يوجد ملف مرفوع مسبقاً — يمكنك استبداله');
+        document.getElementById(`del-btn-${r.key}`).style.display = 'block';
+      }
     } catch(e) {}
   }
 }
@@ -335,6 +343,7 @@ async function uploadFile(key, pin) {
       showStatus(key, 'success', `✅ تم رفع الملف بنجاح — ${fileName}`);
       document.getElementById(`fname-${key}`).textContent = fileName;
       btn.textContent = '✅ تم الرفع';
+      document.getElementById(`del-btn-${key}`).style.display = 'block';
     } else {
       const err = await res.text();
       showStatus(key, 'error', '❌ فشل الرفع — حاول مرة أخرى');
@@ -347,6 +356,36 @@ async function uploadFile(key, pin) {
     btn.textContent = '⬆️ إعادة المحاولة';
     btn.disabled = false;
   }
+}
+
+async function deleteFile(key, pin) {
+  if (!confirm(`هل تريد حذف ملف "${key}-${pin}" نهائياً؟`)) return;
+
+  const extensions = ['pdf', 'PDF', 'docx', 'doc', 'jpg', 'png'];
+  let deleted = false;
+
+  for (const ext of extensions) {
+    const fileName = `${key}-${pin}.${ext}`;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${BUCKET}/${fileName}`, {
+        method: 'DELETE',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY
+        }
+      });
+      if (res.ok) {
+        deleted = true;
+        showStatus(key, 'error', '🗑️ تم حذف الملف بنجاح');
+        document.getElementById(`del-btn-${key}`).style.display = 'none';
+        document.getElementById(`fname-${key}`).textContent = `${key}-${pin}.pdf`;
+        clearFile(key);
+        break;
+      }
+    } catch(e) {}
+  }
+
+  if (!deleted) showStatus(key, 'error', '❌ لم يُعثر على ملف للحذف');
 }
 
 function showStatus(key, type, msg) {
