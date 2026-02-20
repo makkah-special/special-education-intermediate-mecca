@@ -367,6 +367,7 @@
     font-weight: 700;
   }
   .tag-green { background: #d1fae5; color: #065f46; }
+  .tag-blue  { background: #dbeafe; color: #1e40af; }
   .tag-blue { background: #dbeafe; color: #1e40af; }
   .tag-yellow { background: #fef3c7; color: #92400e; }
   .tag-purple { background: #ede9fe; color: #5b21b6; }
@@ -729,18 +730,17 @@
   <div class="portal-body">
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="openTab('plan',this)">📋 الخطة الفردية</button>
+      <button class="tab-btn active" onclick="openTab('info',this)">👤 البيانات</button>
       <button class="tab-btn" onclick="openTab('reports',this)">📊 التقارير</button>
-      <button class="tab-btn" onclick="openTab('followup',this)">📅 المتابعة</button>
+      <button class="tab-btn" onclick="openTab('plan',this)">📋 الخطة الفردية</button>
       <button class="tab-btn" onclick="openTab('iqrar',this)">✍️ الإقرار</button>
-      <button class="tab-btn" onclick="openTab('info',this)">👤 البيانات</button>
     </div>
 
-    <!-- PLAN -->
-    <div class="tab-pane active" id="tab-plan">
+    <!-- INFO -->
+    <div class="tab-pane active" id="tab-info">
       <div class="s-card">
-        <div class="s-card-head">📋 الخطة التعليمية الفردية — الفصل الثاني 1447هـ</div>
-        <div style="padding:20px;" id="plan-pdfs"></div>
+        <div class="s-card-head">👤 بيانات الطالب</div>
+        <table class="info-tbl" id="info-tbl"></table>
       </div>
     </div>
 
@@ -752,13 +752,11 @@
       </div>
     </div>
 
-    <!-- FOLLOWUP -->
-    <div class="tab-pane" id="tab-followup">
+    <!-- PLAN -->
+    <div class="tab-pane" id="tab-plan">
       <div class="s-card">
-        <div class="s-card-head">📅 لوحة المتابعة الشهرية</div>
-        <div style="overflow-x:auto;">
-          <table class="fu-table" id="fu-table"></table>
-        </div>
+        <div class="s-card-head">📋 الخطة التعليمية الفردية — الفصل الثاني 1447هـ</div>
+        <div style="padding:20px;" id="plan-pdfs"></div>
       </div>
     </div>
 
@@ -767,14 +765,6 @@
       <div class="s-card">
         <div class="s-card-head">✍️ إقرار اطلاع ولي الأمر على الخطة الفردية</div>
         <div style="padding:24px;" id="iqrar-content"></div>
-      </div>
-    </div>
-
-    <!-- INFO -->
-    <div class="tab-pane" id="tab-info">
-      <div class="s-card">
-        <div class="s-card-head">👤 بيانات الطالب</div>
-        <table class="info-tbl" id="info-tbl"></table>
       </div>
     </div>
 
@@ -829,9 +819,6 @@ const STUDENTS = {
       { title: "الأهداف السلوكية", desc: "الالتزام بقواعد الفصل والتفاعل الإيجابي مع المعلم والزملاء", color: "#2563a8" },
     ],
     reports: [
-      { title: "تقرير بداية الفصل الثاني", date: "محرم 1447", icon: "📄", bg: "#ede9fe", tag: "تقرير دوري", tagClass: "tag-purple" },
-      { title: "تقرير المستوى الأكاديمي", date: "صفر 1447", icon: "📊", bg: "#d1fae5", tag: "أكاديمي", tagClass: "tag-green" },
-      { title: "تقرير السلوك والتكيف", date: "ربيع الأول 1447", icon: "📝", bg: "#dbeafe", tag: "سلوكي", tagClass: "tag-blue" },
     ],
     followup: [
       { skill: "القراءة الجهرية",   m1:"✓", m2:"✓", m3:"~", m4:"✓", m5:"✓" },
@@ -1175,9 +1162,9 @@ const STUDENTS = {
       { title: "الضبط الانفعالي", desc: "تعلم مهارات التنفس والهدوء عند الإحباط أو الضغط", color: "#2563a8" },
     ],
     reports: [
-      { title: "تقرير مطلع الفصل", date: "محرم 1446", icon: "📋", bg: "#fef3c7", tag: "تشخيصي", tagClass: "tag-yellow" },
-      { title: "تقرير التقدم الأكاديمي", date: "صفر 1446", icon: "📈", bg: "#d1fae5", tag: "أكاديمي", tagClass: "tag-green" },
-      { title: "تقرير متابعة السلوك", date: "ربيع الأول 1446", icon: "📝", bg: "#dbeafe", tag: "سلوكي", tagClass: "tag-blue" },
+      { title: "تقرير مطلع الفصل", date: "محرم 1447", icon: "📋", bg: "#fef3c7", tag: "تشخيصي", tagClass: "tag-yellow" },
+      { title: "تقرير التقدم الأكاديمي", date: "صفر 1447", icon: "📈", bg: "#d1fae5", tag: "أكاديمي", tagClass: "tag-green" },
+      { title: "تقرير متابعة السلوك", date: "ربيع الأول 1447", icon: "📝", bg: "#dbeafe", tag: "سلوكي", tagClass: "tag-blue" },
     ],
     followup: [
       { skill: "التهجئة",            m1:"~", m2:"✓", m3:"✓", m4:"✓", m5:"✓" },
@@ -1224,9 +1211,9 @@ const STUDENTS = {
       { title: "القيادة والمسؤولية", desc: "أخذ دور القائد في المجموعات وتحمل مسؤولية المهام", color: "#2563a8" },
     ],
     reports: [
-      { title: "تقرير التقييم الفصلي", date: "محرم 1446", icon: "📋", bg: "#ede9fe", tag: "دوري", tagClass: "tag-purple" },
-      { title: "تقرير الرياضيات المتقدمة", date: "صفر 1446", icon: "📐", bg: "#fef3c7", tag: "رياضيات", tagClass: "tag-yellow" },
-      { title: "تقرير المهارات القيادية", date: "ربيع الثاني 1446", icon: "🏆", bg: "#d1fae5", tag: "مهارات", tagClass: "tag-green" },
+      { title: "تقرير التقييم الفصلي", date: "محرم 1447", icon: "📋", bg: "#ede9fe", tag: "دوري", tagClass: "tag-purple" },
+      { title: "تقرير الرياضيات المتقدمة", date: "صفر 1447", icon: "📐", bg: "#fef3c7", tag: "رياضيات", tagClass: "tag-yellow" },
+      { title: "تقرير المهارات القيادية", date: "ربيع الثاني 1447", icon: "🏆", bg: "#d1fae5", tag: "مهارات", tagClass: "tag-green" },
     ],
     followup: [
       { skill: "التلخيص",            m1:"✓", m2:"✓", m3:"✓", m4:"✓", m5:"✓" },
@@ -1344,7 +1331,13 @@ function loadStudent(pin) {
 
   // REPORTS
   const rl = document.getElementById('reports-list');
-  rl.innerHTML = s.reports.map(r => `
+  // التقارير الثابتة لكل طالب
+  const fixedReports = [
+    { title: "التقرير النفسي الموحد", icon: "🧠", bg: "#ede9fe", tag: "نفسي", tagClass: "tag-purple", date: "الفصل الثاني 1447" },
+    { title: "التقرير الطبي",          icon: "🏥", bg: "#dbeafe", tag: "طبي",  tagClass: "tag-blue",   date: "الفصل الثاني 1447" },
+  ];
+  const allReports = [...fixedReports, ...s.reports];
+  rl.innerHTML = allReports.map(r => `
     <div class="report-row">
       <div class="report-left">
         <div class="report-icon" style="background:${r.bg}">${r.icon}</div>
@@ -1357,27 +1350,6 @@ function loadStudent(pin) {
     </div>
   `).join('');
 
-  // FOLLOW-UP
-  const ft = document.getElementById('fu-table');
-  ft.innerHTML = `
-    <tr>
-      <th>المهارة / الهدف</th>
-      <th>الشهر ١</th>
-      <th>الشهر ٢</th>
-      <th>الشهر ٣</th>
-      <th>الشهر ٤</th>
-      <th>الشهر ٥</th>
-    </tr>
-    ${s.followup.map(row => `
-      <tr>
-        <td style="text-align:right; font-weight:700;">${row.skill}</td>
-        ${[row.m1, row.m2, row.m3, row.m4, row.m5].map(v => `
-          <td><span class="circle ${v==='✓'?'c-done':v==='~'?'c-part':'c-no'}">${v}</span></td>
-        `).join('')}
-      </tr>
-    `).join('')}
-  `;
-
   // INFO
   const it = document.getElementById('info-tbl');
   it.innerHTML = `
@@ -1386,7 +1358,7 @@ function loadStudent(pin) {
     <tr><th>الصف الدراسي</th><td>${s.grade}</td></tr>
     <tr><th>البرنامج</th><td><span class="tag tag-green">📘 برنامج يسير التعليمي</span></td></tr>
     <tr><th>جوال ولي الأمر</th><td><a href="tel:${s.phone}" style="color:var(--green); font-weight:700;">${s.phone}</a></td></tr>
-    <tr><th>العام الدراسي</th><td>1445 – 1446هـ</td></tr>
+    <tr><th>العام الدراسي</th><td>1447هـ</td></tr>
     <tr><th>الفصل الدراسي</th><td>الفصل الثاني</td></tr>
   `;
 
@@ -1434,6 +1406,7 @@ function loadStudent(pin) {
     <div class="iqrar-actions">
       <button class="btn-sign" onclick="submitIqrar()">✅ تأكيد الإقرار والتوقيع</button>
       <button class="btn-clear-sign" onclick="clearSign()">🗑️ مسح التوقيع</button>
+      <button id="btn-save-pdf" onclick="saveIqrarPDF()" style="display:none; align-items:center; gap:7px; padding:9px 18px; border-radius:9px; background:linear-gradient(135deg,#1a3a5c,#2563a8); color:#fff; border:none; font-family:'Cairo',sans-serif; font-size:0.84rem; font-weight:700; cursor:pointer; box-shadow:0 3px 12px rgba(26,58,92,0.3);">🖨️ طباعة / حفظ PDF</button>
     </div>
 
     <div class="signed-badge" id="signed-badge">
@@ -1445,6 +1418,10 @@ function loadStudent(pin) {
   initCanvas();
 
   // SHOW PORTAL
+  // Reset to first tab (info)
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+  document.querySelectorAll('.tab-pane').forEach((p,i) => p.classList.toggle('active', i===0));
+
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('student-portal').style.display = 'block';
   window.scrollTo(0, 0);
@@ -1467,6 +1444,8 @@ function openTab(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
+  // Init canvas when iqrar tab is opened
+  if (id === 'iqrar') setTimeout(initCanvas, 100);
 }
 
 // Legend
@@ -1538,27 +1517,100 @@ function clearSign() {
 
 function submitIqrar() {
   if (!signCanvas) return;
-  // Check if canvas has any drawing
   const data = signCtx.getImageData(0, 0, signCanvas.width, signCanvas.height).data;
   const hasDrawing = Array.from(data).some((v, i) => i % 4 === 3 && v > 0);
   if (!hasDrawing) {
     alert('⚠️ يرجى رسم توقيعك في المربع أولاً');
     return;
   }
+  // Embed signature image into iqrar
+  const signImg = signCanvas.toDataURL('image/png');
+  const signArea = document.getElementById('sign-area');
+  signArea.innerHTML = `<img src="${signImg}" style="width:100%;height:100%;object-fit:contain;padding:6px;">`;
+  signArea.classList.add('signed');
+
   document.getElementById('signed-badge').style.display = 'flex';
   const btn = document.querySelector('.btn-sign');
   btn.textContent = '✅ تم تسجيل الإقرار';
   btn.disabled = true;
   btn.style.opacity = '0.7';
+
+  // Show PDF save button
+  document.getElementById('btn-save-pdf').style.display = 'inline-flex';
 }
 
-legend.style.cssText = 'display:flex;gap:14px;flex-wrap:wrap;padding:14px 22px 16px;background:#f9f9f9;border-top:1px solid #e0d8c8;font-size:0.76rem;color:#5a6478;';
-legend.innerHTML = `
-  <span><span style="background:#d1fae5;color:#065f46;border-radius:50%;display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;">✓</span> تحقق الهدف</span>
-  <span><span style="background:#fef3c7;color:#92400e;border-radius:50%;display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;">~</span> تحقق جزئياً</span>
-  <span><span style="background:#fee2e2;color:#991b1b;border-radius:50%;display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;">✗</span> لم يتحقق</span>
-`;
-document.getElementById('fu-table').insertAdjacentElement('afterend', legend);
+function saveIqrarPDF() {
+  const s = currentStudent;
+  const signImg = document.querySelector('#sign-area img');
+  const signSrc = signImg ? signImg.src : '';
+  const today = new Date().toLocaleDateString('ar-SA-u-nu-latn', {year:'numeric',month:'long',day:'numeric'});
+
+  const win = window.open('', '_blank');
+  win.document.write(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+      <meta charset="UTF-8">
+      <title>إقرار ولي الأمر — ${s.name}</title>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Cairo',sans-serif; background:#fff; color:#1a1a2e; padding:40px; direction:rtl; }
+        .header { text-align:center; margin-bottom:30px; border-bottom:3px solid #1a3a5c; padding-bottom:20px; }
+        .header h1 { font-size:1.4rem; font-weight:800; color:#1a3a5c; margin-bottom:4px; }
+        .header p { font-size:0.85rem; color:#5a6478; }
+        .badge { display:inline-block; background:#1a3a5c; color:#fff; padding:4px 16px; border-radius:20px; font-size:0.78rem; font-weight:700; margin-bottom:10px; }
+        .iqrar-text { background:#fffbf0; border:1px solid #f0d898; border-right:4px solid #c8973a; border-radius:10px; padding:18px 20px; margin:20px 0; font-size:0.9rem; line-height:2; }
+        .fields { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+        .field { border:1px solid #e0d8c8; border-radius:8px; padding:10px 14px; }
+        .field-label { font-size:0.72rem; font-weight:700; color:#5a6478; margin-bottom:4px; }
+        .field-value { font-size:0.9rem; font-weight:800; color:#1a3a5c; }
+        .sign-section { margin-top:24px; }
+        .sign-title { font-size:0.85rem; font-weight:700; color:#1a3a5c; margin-bottom:10px; }
+        .sign-box { border:2px solid #1a3a5c; border-radius:10px; height:120px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+        .sign-box img { max-height:110px; }
+        .footer { margin-top:30px; text-align:center; font-size:0.75rem; color:#9ca3af; border-top:1px solid #e0d8c8; padding-top:14px; }
+        @media print { body { padding:20px; } }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <div class="badge">وزارة التعليم — مدرسة مكة المكرمة المتوسطة</div>
+        <h1>إقرار اطلاع ولي الأمر على الخطة الفردية</h1>
+        <p>قسم ذوي الإعاقة — برنامج يسير التعليمي</p>
+      </div>
+
+      <div class="iqrar-text">
+        أنا ولي أمر الطالب / <strong>${s.name}</strong>، أُقرّ بأنني اطلعتُ على الخطة التعليمية الفردية المُعدَّة لابني
+        للفصل الدراسي الثاني من العام الدراسي 1447هـ، وأنني على دراية بجميع الأهداف والبرامج المذكورة فيها،
+        وأتعهد بالتعاون مع فريق التربية الخاصة لتحقيق أفضل النتائج لابني.
+      </div>
+
+      <div class="fields">
+        <div class="field"><div class="field-label">اسم الطالب</div><div class="field-value">${s.name}</div></div>
+        <div class="field"><div class="field-label">الصف الدراسي</div><div class="field-value">${s.grade}</div></div>
+        <div class="field"><div class="field-label">البرنامج</div><div class="field-value">📘 برنامج يسير التعليمي</div></div>
+        <div class="field"><div class="field-label">تاريخ الإقرار</div><div class="field-value">${today}</div></div>
+      </div>
+
+      <div class="sign-section">
+        <div class="sign-title">✍️ توقيع ولي الأمر</div>
+        <div class="sign-box">
+          ${signSrc ? `<img src="${signSrc}">` : '<span style="color:#9ca3af;font-size:0.85rem;">لا يوجد توقيع</span>'}
+        </div>
+      </div>
+
+      <div class="footer">
+        © 1447هـ — مدرسة مكة المكرمة المتوسطة — قسم ذوي الإعاقة — إعداد: أ. سعد الزهراني
+      </div>
+      <script>window.onload=()=>window.print();<\/script>
+    </body>
+    </html>
+  `);
+  win.document.close();
+}
+
+
 </script>
 </body>
 </html>
