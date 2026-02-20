@@ -63,15 +63,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 40px;
+    padding: 14px 40px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow: hidden;
   }
 
   .header-logos {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
+    min-width: 0;
+    flex: 1;
   }
+
+  .header-text { min-width: 0; overflow: hidden; }
 
   .logo-placeholder {
     width: 58px; height: 58px;
@@ -84,9 +91,11 @@
 
   .header-title-top {
     color: rgba(255,255,255,0.9);
-    font-size: 0.85rem;
+    font-size: 0.83rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .header-badge {
@@ -642,16 +651,38 @@
 
   /* ========= RESPONSIVE ========= */
   @media (max-width: 768px) {
-    .header-top { padding: 14px 20px; }
-    .hero { padding: 40px 20px 50px; }
-    main { padding: 0 20px 40px; }
-    .alert-bar { margin: 20px 20px; }
+    .header-top { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+    .header-logos { gap: 10px; }
+    .header-logos img { height: 44px !important; }
+    .header-title-top { font-size: 0.75rem; }
+    .header-badge { font-size: 0.7rem; padding: 5px 10px; }
+    .hero { padding: 28px 16px 36px; }
+    .hero h1 { font-size: 1.6rem; }
+    .hero p { font-size: 0.88rem; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-secondary { width: 100%; max-width: 280px; text-align: center; }
+    main { padding: 0 14px 40px; }
+    .alert-bar { margin: 16px 14px; font-size: 0.82rem; }
     .stats-inner { flex-wrap: wrap; }
     .stat-item { border-left: none; border-bottom: 1px solid var(--border); min-width: 50%; }
+    .quick-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .quick-card { padding: 16px 12px; }
+    .quick-icon { font-size: 1.6rem; }
+    .quick-card h3 { font-size: 0.88rem; }
+    .quick-card p { display: none; }
     .programs-grid, .about-grid { grid-template-columns: 1fr; }
-    .student-portal-section { flex-direction: column; text-align: center; }
+    .student-portal-section { flex-direction: column; text-align: center; padding: 24px 16px; }
     .portal-btn { width: 100%; justify-content: center; }
-    .quick-grid { grid-template-columns: 1fr 1fr; }
+    .portal-features { justify-content: center; }
+    .staff-tags { gap: 6px; }
+    .staff-tag { font-size: 0.75rem; padding: 5px 10px; }
+    .section-title { font-size: 1.2rem; }
+  }
+
+  @media (max-width: 400px) {
+    .quick-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.4rem; }
+    .stat-num { font-size: 1.5rem; }
   }
 </style>
 </head>
@@ -664,10 +695,9 @@
       <a href="https://www.moe.gov.sa/" target="_blank" rel="noopener" style="display:flex; align-items:center; flex-shrink:0;">
         <img src="moe-logo.png" alt="شعار وزارة التعليم" style="height:70px; width:auto; object-fit:contain;">
       </a>
-      <div>
-        <div style="color:rgba(255,255,255,0.55); font-size:0.78rem;">إدارة تعليم جدة</div>
-         <div style="color:rgba(255,255,255,0.55); font-size:0.78rem;">قسم ذوي الإعاقة</div>
-        <div style="color:rgba(255,255,255,0.55); font-size:0.78rem;">مدرسة مكة المكرمة المتوسطة</div>
+      <div class="header-text">
+        <div class="header-title-top">وزارة التعليم — المملكة العربية السعودية</div>
+        <div style="color:rgba(255,255,255,0.55); font-size:0.75rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">مدرسة مكة المكرمة المتوسطة</div>
       </div>
     </div>
     <div class="header-badge">✨ البوابة الرقمية 2026</div>
@@ -874,6 +904,9 @@
 <footer>
   © 2026 مدرسة مكة المكرمة المتوسطة — قسم ذوي الإعاقة<br>
   <strong>إعداد وتنفيذ: أ. سعد الزهراني</strong>
+  <div style="margin-top:12px;">
+    <a href="signatures.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:5px 14px;border-radius:20px;font-size:0.72rem;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.5)'">🔐 بوابة المشرف</a>
+  </div>
 </footer>
 
 <script>
