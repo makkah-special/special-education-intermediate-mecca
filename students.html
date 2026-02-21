@@ -1041,6 +1041,7 @@
       <button class="admin-tab-btn active" onclick="openEditTab('basic',this)" style="font-size:0.78rem;padding:7px 4px;">👤 البيانات</button>
       <button class="admin-tab-btn" onclick="openEditTab('plan',this)" style="font-size:0.78rem;padding:7px 4px;">📋 الخطة</button>
       <button class="admin-tab-btn" onclick="openEditTab('followup',this)" style="font-size:0.78rem;padding:7px 4px;">📊 المتابعة</button>
+      <button class="admin-tab-btn" onclick="openEditTab('details',this)" style="font-size:0.78rem;padding:7px 4px;">📝 التفاصيل</button>
     </div>
 
     <!-- البيانات الأساسية -->
@@ -1085,6 +1086,91 @@
       </div>
       <div id="followup-editor"></div>
       <button class="btn-add-goal" onclick="addFollowupRow()">+ إضافة مهارة</button>
+    </div>
+
+    <!-- البيانات التفصيلية -->
+    <div id="edit-tab-details" style="display:none;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label" style="font-size:0.8rem;font-weight:800;color:var(--primary);">📋 المعلومات الشخصية</label>
+        </div>
+      <div class="form-group">
+        <label class="form-label">تاريخ الميلاد</label>
+        <input type="date" class="form-input" id="edit-birthdate">
+      </div>
+      <div class="form-group">
+        <label class="form-label">الجنسية</label>
+        <input type="text" class="form-input" id="edit-nationality" placeholder="الجنسية">
+      </div>
+      <div class="form-group">
+        <label class="form-label">العمر</label>
+        <input type="text" class="form-input" id="edit-age" placeholder="العمر">
+      </div>
+      <div class="form-group">
+        <label class="form-label">العنوان</label>
+        <input type="text" class="form-input" id="edit-address" placeholder="العنوان">
+      </div>
+      <div class="form-group">
+        <label class="form-label">درجة الذكاء</label>
+        <input type="text" class="form-input" id="edit-iq" placeholder="درجة الذكاء">
+      </div>
+      <div class="form-group">
+        <label class="form-label">ترتيب الطالب بين إخوته</label>
+        <input type="text" class="form-input" id="edit-sibling-order" placeholder="ترتيب الطالب بين إخوته">
+      </div>
+      <div class="form-group">
+        <label class="form-label">المستوى الاقتصادي للأسرة</label>
+        <select class="form-input" id="edit-economic-level"><option value="">اختر...</option><option value="منخفض">منخفض</option>
+<option value="متوسط">متوسط</option>
+<option value="مرتفع">مرتفع</option></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">مستوى تعليم الأب</label>
+        <select class="form-input" id="edit-father-edu"><option value="">اختر...</option><option value="ابتدائي">ابتدائي</option>
+<option value="متوسط">متوسط</option>
+<option value="ثانوي">ثانوي</option>
+<option value="جامعي">جامعي</option>
+<option value="دراسات عليا">دراسات عليا</option>
+<option value="غير متعلم">غير متعلم</option></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">مستوى تعليم الأم</label>
+        <select class="form-input" id="edit-mother-edu"><option value="">اختر...</option><option value="ابتدائي">ابتدائي</option>
+<option value="متوسط">متوسط</option>
+<option value="ثانوي">ثانوي</option>
+<option value="جامعي">جامعي</option>
+<option value="دراسات عليا">دراسات عليا</option>
+<option value="غير متعلم">غير متعلم</option></select>
+      </div>
+      <div class="form-group" style="grid-column:1/-1;">
+        <label class="form-label">الوضع النفسي للطالب</label>
+        <textarea class="form-input" id="edit-status-psych" rows="2" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-group" style="grid-column:1/-1;">
+        <label class="form-label">الوضع الاجتماعي للطالب</label>
+        <textarea class="form-input" id="edit-status-social" rows="2" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-group" style="grid-column:1/-1;">
+        <label class="form-label">الوضع الصحي للطالب</label>
+        <textarea class="form-input" id="edit-status-health" rows="2" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-group" style="grid-column:1/-1;">
+        <label class="form-label">التشخيص</label>
+        <textarea class="form-input" id="edit-diagnosis" rows="2" style="resize:vertical;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">المكان التربوي المناسب</label>
+        <input type="text" class="form-input" id="edit-program-place" placeholder="المكان التربوي المناسب">
+      </div>
+      <div class="form-group">
+        <label class="form-label">تاريخ بدء البرنامج</label>
+        <input type="text" class="form-input" id="edit-program-start" placeholder="تاريخ بدء البرنامج">
+      </div>
+      <div class="form-group">
+        <label class="form-label">تاريخ إنهاء البرنامج</label>
+        <input type="text" class="form-input" id="edit-program-end" placeholder="تاريخ إنهاء البرنامج">
+      </div>
+      </div>
     </div>
 
     <div class="form-actions">
@@ -1807,6 +1893,22 @@ function loadStudent(pin) {
     <tr><th>جوال ولي الأمر</th><td><a href="tel:${s.phone}" style="color:var(--green); font-weight:700;">${s.phone}</a></td></tr>
     <tr><th>العام الدراسي</th><td>1447هـ</td></tr>
     <tr><th>الفصل الدراسي</th><td>الفصل الثاني</td></tr>
+    ${s.birthdate ? `<tr><th>تاريخ الميلاد</th><td>${s.birthdate}</td></tr>` : ''}
+    ${s.nationality ? `<tr><th>الجنسية</th><td>${s.nationality}</td></tr>` : ''}
+    ${s.age ? `<tr><th>العمر</th><td>${s.age}</td></tr>` : ''}
+    ${s.address ? `<tr><th>العنوان</th><td>${s.address}</td></tr>` : ''}
+    ${s.iq ? `<tr><th>درجة الذكاء</th><td>${s.iq}</td></tr>` : ''}
+    ${s.diagnosis ? `<tr><th>التشخيص</th><td>${s.diagnosis}</td></tr>` : ''}
+    ${s.program_place ? `<tr><th>المكان التربوي</th><td>${s.program_place}</td></tr>` : ''}
+    ${s.program_start ? `<tr><th>تاريخ بدء البرنامج</th><td>${s.program_start}</td></tr>` : ''}
+    ${s.program_end ? `<tr><th>تاريخ إنهاء البرنامج</th><td>${s.program_end}</td></tr>` : ''}
+    ${s.status_health ? `<tr><th>الوضع الصحي</th><td>${s.status_health}</td></tr>` : ''}
+    ${s.status_psych ? `<tr><th>الوضع النفسي</th><td>${s.status_psych}</td></tr>` : ''}
+    ${s.status_social ? `<tr><th>الوضع الاجتماعي</th><td>${s.status_social}</td></tr>` : ''}
+    ${s.sibling_order ? `<tr><th>الترتيب بين إخوته</th><td>${s.sibling_order}</td></tr>` : ''}
+    ${s.economic_level ? `<tr><th>المستوى الاقتصادي</th><td>${s.economic_level}</td></tr>` : ''}
+    ${s.father_edu ? `<tr><th>تعليم الأب</th><td>${s.father_edu}</td></tr>` : ''}
+    ${s.mother_edu ? `<tr><th>تعليم الأم</th><td>${s.mother_edu}</td></tr>` : ''}
   `;
 
   // IQRAR
@@ -2230,6 +2332,23 @@ function openEditModal(pin) {
   renderPlanEditor(sModal.plan || []);
   // تحميل المتابعة
   renderFollowupEditor(sModal.followup || []);
+  // تحميل البيانات التفصيلية
+  document.getElementById('edit-birthdate').value = sEdit.birthdate || '';
+  document.getElementById('edit-nationality').value = sEdit.nationality || '';
+  document.getElementById('edit-age').value = sEdit.age || '';
+  document.getElementById('edit-address').value = sEdit.address || '';
+  document.getElementById('edit-iq').value = sEdit.iq || '';
+  document.getElementById('edit-sibling-order').value = sEdit.sibling_order || '';
+  document.getElementById('edit-economic-level').value = sEdit.economic_level || '';
+  document.getElementById('edit-father-edu').value = sEdit.father_edu || '';
+  document.getElementById('edit-mother-edu').value = sEdit.mother_edu || '';
+  document.getElementById('edit-status-psych').value = sEdit.status_psych || '';
+  document.getElementById('edit-status-social').value = sEdit.status_social || '';
+  document.getElementById('edit-status-health').value = sEdit.status_health || '';
+  document.getElementById('edit-diagnosis').value = sEdit.diagnosis || '';
+  document.getElementById('edit-program-place').value = sEdit.program_place || '';
+  document.getElementById('edit-program-start').value = sEdit.program_start || '';
+  document.getElementById('edit-program-end').value = sEdit.program_end || '';
 
   // فتح تبويب البيانات
   openEditTab('basic', document.querySelector('#edit-modal .admin-tab-btn'));
@@ -2237,7 +2356,7 @@ function openEditModal(pin) {
 }
 
 function openEditTab(id, btn) {
-  ['basic','plan','followup'].forEach(t => {
+  ['basic','plan','followup','details'].forEach(t => {
     document.getElementById('edit-tab-' + t).style.display = t === id ? 'block' : 'none';
   });
   document.querySelectorAll('#edit-modal .admin-tab-btn').forEach(b => b.classList.remove('active'));
@@ -2319,6 +2438,23 @@ function saveStudentEdits() {
   sEdit.grade   = document.getElementById('edit-grade').value.trim() || sEdit.grade;
   sEdit.id_full = document.getElementById('edit-id').value.trim() || sEdit.id_full;
   sEdit.phone   = document.getElementById('edit-phone').value.trim();
+  // البيانات التفصيلية
+  sEdit.birthdate = document.getElementById('edit-birthdate').value.trim();
+  sEdit.nationality = document.getElementById('edit-nationality').value.trim();
+  sEdit.age = document.getElementById('edit-age').value.trim();
+  sEdit.address = document.getElementById('edit-address').value.trim();
+  sEdit.iq = document.getElementById('edit-iq').value.trim();
+  sEdit.sibling_order = document.getElementById('edit-sibling-order').value.trim();
+  sEdit.economic_level = document.getElementById('edit-economic-level').value.trim();
+  sEdit.father_edu = document.getElementById('edit-father-edu').value.trim();
+  sEdit.mother_edu = document.getElementById('edit-mother-edu').value.trim();
+  sEdit.status_psych = document.getElementById('edit-status-psych').value.trim();
+  sEdit.status_social = document.getElementById('edit-status-social').value.trim();
+  sEdit.status_health = document.getElementById('edit-status-health').value.trim();
+  sEdit.diagnosis = document.getElementById('edit-diagnosis').value.trim();
+  sEdit.program_place = document.getElementById('edit-program-place').value.trim();
+  sEdit.program_start = document.getElementById('edit-program-start').value.trim();
+  sEdit.program_end = document.getElementById('edit-program-end').value.trim();
 
   const goalTitles = document.querySelectorAll('[data-goal-title]');
   const goalDescs  = document.querySelectorAll('[data-goal-desc]');
