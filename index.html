@@ -31,6 +31,59 @@
     overflow-x: hidden;
   }
 
+  /* ========= FOUNDING DAY DECORATION ========= */
+  .founding-overlay {
+    position: fixed; inset: 0; z-index: 999; pointer-events: none;
+    overflow: hidden;
+  }
+  .founding-banner {
+    background: linear-gradient(135deg, #007A3D 0%, #005a2e 50%, #007A3D 100%);
+    color: #fff; text-align: center; padding: 10px 20px;
+    font-family: 'Tajawal', sans-serif; font-size: 0.92rem; font-weight: 800;
+    letter-spacing: 1px; position: relative; overflow: hidden;
+    border-bottom: 3px solid #FFD700;
+  }
+  .founding-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,215,0,0.15), transparent);
+    animation: shimmerF 3s linear infinite;
+  }
+  @keyframes shimmerF {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .founding-star {
+    position: fixed; pointer-events: none; z-index: 998;
+    animation: twinkleF var(--dur) var(--delay) ease-in-out infinite alternate;
+    color: #FFD700; font-size: var(--size, 14px);
+  }
+  @keyframes twinkleF {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+  }
+  .founding-palm {
+    position: fixed; font-size: 3.5rem; pointer-events: none; z-index: 998;
+    animation: swayF 4s ease-in-out infinite alternate;
+    filter: drop-shadow(0 4px 8px rgba(0,122,61,0.4));
+  }
+  @keyframes swayF {
+    0% { transform: rotate(-5deg) scale(1); }
+    100% { transform: rotate(5deg) scale(1.05); }
+  }
+  .founding-sword {
+    position: fixed; font-size: 3rem; pointer-events: none; z-index: 998;
+    animation: glowF 2s ease-in-out infinite alternate;
+  }
+  @keyframes glowF {
+    0% { opacity: 0.6; filter: drop-shadow(0 0 4px #FFD700); }
+    100% { opacity: 1; filter: drop-shadow(0 0 16px #FFD700); }
+  }
+  /* تلوين الهيدر بألوان التأسيس */
+  .founding-active .hero-section {
+    background: linear-gradient(160deg, #003d1f 0%, #005a2e 30%, #1a3a5c 70%, #0f2440 100%) !important;
+  }
+
   /* ========= RAMADAN DECORATION ========= */
   .ramadan-overlay {
     position: fixed;
@@ -783,6 +836,12 @@
 </head>
 <body>
 
+<!-- FOUNDING DAY DECORATION -->
+<div class="founding-banner" id="foundingBanner">
+  🌴 يوم التأسيس السعودي المجيد — 22 فبراير 1727م ⚔️ &nbsp;|&nbsp; نفخر بتاريخنا العريق 🇸🇦
+</div>
+<div class="founding-overlay" id="foundingOverlay"></div>
+
 <!-- RAMADAN DECORATION -->
 <div class="ramadan-banner">
   رمضان كريم 🌙 — تقبّل الله منا ومنكم صالح الأعمال ✨
@@ -897,7 +956,8 @@
     <p>منصة رقمية متكاملة لعرض برامج القسم ومتابعة الطلاب والتواصل مع أولياء الأمور</p>
     <div class="hero-btns">
       <a href="#programs" class="btn-primary">🔍 استعراض البرامج</a>
-      <a href="students.html" class="btn-secondary">🎓 بوابة ملفات الطلاب</a>
+      <a href="students.html" class="btn-secondary">📘 بوابة ملفات يسير</a>
+      <a href="dumaj-students.html" class="btn-secondary">🧠 بوابة ملفات الدمج الفكري</a>
       <a href="contact.html" class="btn-secondary">📩 تواصل معنا</a>
     </div>
   </div>
@@ -933,44 +993,6 @@
 
 <main>
 
-  <!-- QUICK ACCESS -->
-  <div class="fade-in">
-    <div class="section-title">⚡ وصول سريع</div>
-    <div class="section-sub">اختر القسم المناسب للانتقال مباشرة</div>
-    <div class="quick-grid">
-      <a href="Intellectualdisability.html" class="quick-card" style="--card-color:#2563a8; --card-bg:#e8f0ff;">
-        <div class="quick-icon">🧠</div>
-        <h3>الدمج الفكري</h3>
-        <p>خدمات التعريف والإرشاد ونماذج مساندة الطلاب</p>
-        <span class="quick-arrow">← دخول الصفحة</span>
-      </a>
-      <a href="Slowlearning.html" class="quick-card" style="--card-color:#1a6b4a; --card-bg:#e6f4ef;">
-        <div class="quick-icon">📘</div>
-        <h3>برنامج يسير التعليمي</h3>
-        <p>متابعة الطلاب وخطط الدعم والأدوات التعليمية</p>
-        <span class="quick-arrow" style="color:#1a6b4a;">← دخول الصفحة</span>
-      </a>
-      <a href="students.html" class="quick-card" style="--card-color:#1a6b4a; --card-bg:#e6f4ef;">
-        <div class="quick-icon">📘</div>
-        <h3>بوابة طلاب يسير</h3>
-        <p>الدخول برمز خاص للاطلاع على الخطة والتقارير</p>
-        <span class="quick-arrow" style="color:#1a6b4a;">← دخول البوابة</span>
-      </a>
-      <a href="dumaj-students.html" class="quick-card" style="--card-color:#c25a00; --card-bg:#fff3e0;">
-        <div class="quick-icon">🧠</div>
-        <h3>بوابة طلاب الدمج الفكري</h3>
-        <p>الدخول برمز خاص للاطلاع على الخطة والتقارير</p>
-        <span class="quick-arrow" style="color:#c25a00;">← دخول البوابة</span>
-      </a>
-
-      <a href="contact.html" class="quick-card" style="--card-color:#dc2626; --card-bg:#fff0f0;">
-        <div class="quick-icon">📩</div>
-        <h3>تواصل معنا</h3>
-        <p>استفسارات وملاحظات أولياء الأمور</p>
-        <span class="quick-arrow" style="color:#dc2626;">← فتح صفحة التواصل</span>
-      </a>
-    </div>
-  </div>
 
   <!-- PROGRAMS -->
   <div class="fade-in" id="programs">
@@ -1118,13 +1140,68 @@
 <footer>
   © 2026 مدرسة مكة المكرمة المتوسطة — قسم ذوي الإعاقة<br>
   <strong>إعداد وتنفيذ: أ. سعد الزهراني</strong>
-  <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-    <a href="signatures.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:5px 14px;border-radius:20px;font-size:0.72rem;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.5)'">🔐 مشرف يسير</a>
-    <a href="signatures-dumaj.html" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:5px 14px;border-radius:20px;font-size:0.72rem;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.5)'">🔐 مشرف الدمج الفكري</a>
+  <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;width:100%;max-width:400px;margin-left:auto;margin-right:auto;">
+    <a href="signatures-dumaj.html" style="flex:1;text-align:center;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:5px 14px;border-radius:20px;font-size:0.72rem;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.5)'">🔐 مشرف الدمج الفكري</a>
+    <a href="signatures.html" style="flex:1;text-align:center;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:5px 14px;border-radius:20px;font-size:0.72rem;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(255,255,255,0.5)'">🔐 مشرف يسير</a>
   </div>
 </footer>
 
 <script>
+  // ===== FOUNDING DAY (22-28 فبراير) =====
+  (function() {
+    const today = new Date();
+    const yr = today.getFullYear();
+    const foundingStart = new Date(yr + '-02-21');
+    const foundingEnd   = new Date(yr + '-03-01'); // أسبوع كامل
+
+    if (today >= foundingStart && today < foundingEnd) {
+      document.body.classList.add('founding-active');
+
+      // نجوم ذهبية
+      const overlay = document.getElementById('foundingOverlay');
+      const stars = [
+        {top:'8%',left:'3%'}, {top:'5%',left:'20%'}, {top:'12%',left:'40%'},
+        {top:'6%',left:'60%'}, {top:'9%',left:'75%'}, {top:'4%',left:'88%'},
+        {top:'15%',left:'12%'},{top:'3%',left:'50%'}, {top:'11%',left:'95%'},
+        {top:'18%',left:'30%'},{top:'7%',left:'82%'}, {top:'14%',left:'65%'},
+      ];
+      const sizes = ['10px','12px','8px','14px','9px','11px'];
+      const durs  = ['2.2s','3s','2.7s','3.5s','2.5s','4s'];
+      stars.forEach((s, i) => {
+        const el = document.createElement('div');
+        el.className = 'founding-star';
+        el.textContent = '★';
+        el.style.cssText = `top:${s.top};left:${s.left};--size:${sizes[i%6]};--dur:${durs[i%6]};--delay:${(i*0.3).toFixed(1)}s;`;
+        overlay.appendChild(el);
+      });
+
+      // نخلتان على الجانبين
+      const palmL = document.createElement('div');
+      palmL.className = 'founding-palm';
+      palmL.textContent = '🌴';
+      palmL.style.cssText = 'bottom:20%;left:1%;--delay:0s;';
+      document.body.appendChild(palmL);
+
+      const palmR = document.createElement('div');
+      palmR.className = 'founding-palm';
+      palmR.textContent = '🌴';
+      palmR.style.cssText = 'bottom:20%;right:1%;transform:scaleX(-1);animation-delay:0.5s;';
+      document.body.appendChild(palmR);
+
+      // سيفان
+      const swordL = document.createElement('div');
+      swordL.className = 'founding-sword';
+      swordL.textContent = '⚔️';
+      swordL.style.cssText = 'bottom:30%;left:2%;font-size:2.5rem;';
+      document.body.appendChild(swordL);
+
+    } else {
+      // إخفاء عناصر التأسيس خارج الفترة
+      document.getElementById('foundingBanner')?.remove();
+      document.getElementById('foundingOverlay')?.remove();
+    }
+  })();
+
   // ===== RAMADAN STARS =====
   const starsLayer = document.getElementById('starsLayer');
   const starPositions = [
