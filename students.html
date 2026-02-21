@@ -2355,33 +2355,31 @@ function openEditModal(pin) {
   editingPin = pin;
   const sModal = STUDENTS[pin];
   document.getElementById('modal-title').textContent = '✏️ تعديل: ' + sModal.name;
-  document.getElementById('edit-name').value = sModal.name;
+  document.getElementById('edit-name').value  = sModal.name;
   document.getElementById('edit-grade').value = sModal.grade;
-  document.getElementById('edit-id').value = sModal.id_full;
+  document.getElementById('edit-id').value    = sModal.id_full;
   document.getElementById('edit-phone').value = sModal.phone || '';
-
   // تحميل الخطة
   renderPlanEditor(sModal.plan || []);
   // تحميل المتابعة
   renderFollowupEditor(sModal.followup || []);
   // تحميل البيانات التفصيلية
-  document.getElementById('edit-birthdate').value = sEdit.birthdate || '';
-  document.getElementById('edit-nationality').value = sEdit.nationality || '';
-  document.getElementById('edit-age').value = sEdit.age || '';
-  document.getElementById('edit-address').value = sEdit.address || '';
-  document.getElementById('edit-iq').value = sEdit.iq || '';
-  document.getElementById('edit-sibling-order').value = sEdit.sibling_order || '';
-  document.getElementById('edit-economic-level').value = sEdit.economic_level || '';
-  document.getElementById('edit-father-edu').value = sEdit.father_edu || '';
-  document.getElementById('edit-mother-edu').value = sEdit.mother_edu || '';
-  document.getElementById('edit-status-psych').value = sEdit.status_psych || '';
-  document.getElementById('edit-status-social').value = sEdit.status_social || '';
-  document.getElementById('edit-status-health').value = sEdit.status_health || '';
-  document.getElementById('edit-diagnosis').value = sEdit.diagnosis || '';
-  document.getElementById('edit-program-place').value = sEdit.program_place || '';
-  document.getElementById('edit-program-start').value = sEdit.program_start || '';
-  document.getElementById('edit-program-end').value = sEdit.program_end || '';
-
+  document.getElementById('edit-birthdate').value = sModal.birthdate || '';
+  document.getElementById('edit-nationality').value = sModal.nationality || '';
+  document.getElementById('edit-age').value = sModal.age || '';
+  document.getElementById('edit-address').value = sModal.address || '';
+  document.getElementById('edit-iq').value = sModal.iq || '';
+  document.getElementById('edit-sibling-order').value = sModal.sibling_order || '';
+  document.getElementById('edit-economic-level').value = sModal.economic_level || '';
+  document.getElementById('edit-father-edu').value = sModal.father_edu || '';
+  document.getElementById('edit-mother-edu').value = sModal.mother_edu || '';
+  document.getElementById('edit-status-psych').value = sModal.status_psych || '';
+  document.getElementById('edit-status-social').value = sModal.status_social || '';
+  document.getElementById('edit-status-health').value = sModal.status_health || '';
+  document.getElementById('edit-diagnosis').value = sModal.diagnosis || '';
+  document.getElementById('edit-program-place').value = sModal.program_place || '';
+  document.getElementById('edit-program-start').value = sModal.program_start || '';
+  document.getElementById('edit-program-end').value = sModal.program_end || '';
   // فتح تبويب البيانات
   openEditTab('basic', document.querySelector('#edit-modal .admin-tab-btn'));
   document.getElementById('edit-modal').classList.add('open');
