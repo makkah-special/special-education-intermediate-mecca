@@ -1,14 +1,24 @@
 :root{
-  --bg0:#070B14;
-  --bg1:#0A1226;
+  /* ✅ Official palette: Navy + MOE green */
+  --bg0:#071322;
+  --bg1:#0b1f35;
+
   --card:rgba(255,255,255,.08);
   --card2:rgba(255,255,255,.06);
   --stroke:rgba(255,255,255,.14);
+
   --text:#EAF0FF;
   --muted:rgba(234,240,255,.72);
   --muted2:rgba(234,240,255,.55);
-  --primary:#4EA1FF;
-  --primary2:#7C5CFF;
+
+  /* ✅ Primary (MOE green feel) */
+  --primary:#0ea37f;
+  --primary2:#0d8f6f;
+
+  /* ✅ Background orbs */
+  --accentA: rgba(14,163,127,.28);
+  --accentB: rgba(14,163,127,.14);
+
   --good:#2EE59D;
   --shadow: 0 18px 50px rgba(0,0,0,.35);
 }
@@ -20,11 +30,61 @@ body{
   font-family:"Tajawal",system-ui,-apple-system,Segoe UI,Arial,sans-serif;
   color:var(--text);
   background:
-    radial-gradient(1200px 700px at 20% 20%, rgba(124,92,255,.18), transparent 60%),
-    radial-gradient(1000px 600px at 80% 25%, rgba(78,161,255,.16), transparent 60%),
+    radial-gradient(1200px 700px at 20% 20%, var(--accentA), transparent 60%),
+    radial-gradient(1000px 600px at 80% 25%, var(--accentB), transparent 60%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
   overflow-x:hidden;
 }
+
+/* ===== ✅ شريط الأخبار العاجلة (تنسيق متوافق مع تصميمك) ===== */
+.news-ticker-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0;
+  overflow: hidden;
+  direction: rtl;
+  z-index: 40;
+}
+
+.ticker-label {
+  background: var(--primary); /* يستخدم لون الوزارة الأخضر */
+  color: white;
+  padding: 12px 24px;
+  font-weight: 800;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 2;
+  position: relative;
+  box-shadow: 10px 0 20px rgba(0,0,0,0.2);
+}
+
+.ticker-label::after {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 0;
+  border-width: 22px 0 22px 14px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--primary);
+}
+
+.ticker-content {
+  flex-grow: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  padding-right: 20px;
+}
+
+.ticker-content marquee {
+  margin-top: 4px;
+}
+
+/* ========================================================== */
 
 .container{
   width:min(1100px, 92vw);
@@ -41,20 +101,19 @@ body{
   pointer-events:none;
   z-index:-1;
 }
-.orb1{ top:-180px; right:-140px; background:rgba(124,92,255,.35); }
-.orb2{ bottom:-220px; left:-180px; background:rgba(78,161,255,.28); }
+.orb1{ top:-180px; right:-140px; background:rgba(14,163,127,.30); }
+.orb2{ bottom:-220px; left:-180px; background:rgba(14,163,127,.22); }
 
 /* Topbar */
 .topbar{
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(7,11,20,.55);
+  background:rgba(7,19,34,.55);
   backdrop-filter: blur(14px);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-/* ✅ مهم: نخلي الحاوية مرجع للشعار absolute */
 .topbar-inner{
   position:relative;
   display:flex;
@@ -62,12 +121,9 @@ body{
   justify-content:space-between;
   padding:12px 0;
   gap:14px;
-
-  /* ✅ مساحة للشعار يسار */
   padding-left:110px;
 }
 
-/* ✅ شعار وزارة التعليم (الآن هو <a class="moe-logo">) */
 .moe-logo{
   position:absolute;
   left:28px;
@@ -77,30 +133,18 @@ body{
   align-items:center;
   z-index:5;
   opacity:.9;
-
-  /* ✅ جديد: لأنه رابط */
   text-decoration:none;
-  cursor:pointer;
-  -webkit-tap-highlight-color: transparent; /* يخفف لمعة الضغط في الجوال */
-  transition:.25s ease;
 }
-
 .moe-logo img{
   height:52px;
-  /* يخلي الشعار فاتح/أبيض على الخلفية الداكنة */
   filter: brightness(0) invert(1) drop-shadow(0 6px 14px rgba(0,0,0,.35));
   transition:.25s ease;
 }
-
-/* ✅ جديد: Hover على الرابط نفسه */
-.moe-logo:hover{
-  opacity:1;
-}
 .moe-logo:hover img{
   transform: scale(1.05);
+  opacity:1;
 }
 
-/* ضبط الجوال */
 @media (max-width: 768px){
   .topbar-inner{ padding-left:72px; }
   .moe-logo{ left:14px; }
@@ -151,9 +195,7 @@ body{
 }
 
 /* Hero */
-.hero{
-  padding:34px 0 22px;
-}
+.hero{ padding:34px 0 22px; }
 .hero-inner{
   display:grid;
   grid-template-columns: 1.12fr .88fr;
@@ -210,14 +252,14 @@ body{
   transform: translateY(-1px);
   background:rgba(255,255,255,.09);
 }
+
 .btn.primary{
-  border-color:rgba(78,161,255,.45);
-  background: linear-gradient(135deg, rgba(78,161,255,.95), rgba(124,92,255,.92));
+  border-color:rgba(14,163,127,.45);
+  background: linear-gradient(135deg, rgba(14,163,127,.95), rgba(13,143,111,.92));
 }
 .btn.primary:hover{ filter:brightness(1.03); }
-.btn.ghost{
-  background:rgba(255,255,255,.04);
-}
+
+.btn.ghost{ background:rgba(255,255,255,.04); }
 .btn.small{ padding:10px 14px; border-radius:12px; font-weight:800; }
 
 .stats{
@@ -256,10 +298,7 @@ body{
   margin-bottom:10px;
   letter-spacing:.2px;
 }
-.quick-grid{
-  display:grid;
-  gap:10px;
-}
+.quick-grid{ display:grid; gap:10px; }
 .quick{
   display:flex;
   align-items:center;
@@ -295,12 +334,8 @@ body{
 }
 
 /* Sections */
-.section{
-  padding:30px 0;
-}
-.section-head{
-  margin-bottom:14px;
-}
+.section{ padding:30px 0; }
+.section-head{ margin-bottom:14px; }
 .section-head h2{
   margin:0 0 6px;
   font-size:1.55rem;
@@ -340,8 +375,8 @@ body{
   border-radius:16px;
   display:grid;
   place-items:center;
-  background:rgba(78,161,255,.12);
-  border:1px solid rgba(78,161,255,.25);
+  background:rgba(14,163,127,.14);
+  border:1px solid rgba(14,163,127,.24);
   font-size:1.25rem;
 }
 .card h3{ margin:0 0 6px; font-weight:900; }
@@ -386,7 +421,7 @@ body{
   padding:10px 14px;
   border-radius:14px;
   font-weight:900;
-  background:linear-gradient(135deg, rgba(46,229,157,.85), rgba(78,161,255,.72));
+  background:linear-gradient(135deg, rgba(14,163,127,.85), rgba(46,229,157,.55));
   border:1px solid rgba(255,255,255,.12);
 }
 
@@ -428,4 +463,19 @@ body{
   .nav{ display:none; }
   .brand{ min-width:unset; }
   .hero h1{ font-size:2rem; }
+}
+
+.card.mission-card{
+  background: rgba(255,255,255,.06) !important;
+}
+
+.card.mission-card::before,
+.card.mission-card::after{
+  background: none !important;
+  content: none !important;
+  opacity: 0 !important;
+}
+
+#about{
+  background: linear-gradient(135deg, #070B14, #0A1226) !important;
 }
