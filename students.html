@@ -2231,6 +2231,22 @@ async function loadStudentDataFromStorage(pin) {
       STUDENTS[pin].phone    = data.phone    || STUDENTS[pin].phone || '';
       STUDENTS[pin].plan     = data.plan     || STUDENTS[pin].plan     || [];
       STUDENTS[pin].followup = data.followup || STUDENTS[pin].followup || [];
+      STUDENTS[pin].birthdate = data.birthdate || '';
+      STUDENTS[pin].nationality = data.nationality || '';
+      STUDENTS[pin].age = data.age || '';
+      STUDENTS[pin].address = data.address || '';
+      STUDENTS[pin].iq = data.iq || '';
+      STUDENTS[pin].sibling_order = data.sibling_order || '';
+      STUDENTS[pin].economic_level = data.economic_level || '';
+      STUDENTS[pin].father_edu = data.father_edu || '';
+      STUDENTS[pin].mother_edu = data.mother_edu || '';
+      STUDENTS[pin].status_psych = data.status_psych || '';
+      STUDENTS[pin].status_social = data.status_social || '';
+      STUDENTS[pin].status_health = data.status_health || '';
+      STUDENTS[pin].diagnosis = data.diagnosis || '';
+      STUDENTS[pin].program_place = data.program_place || '';
+      STUDENTS[pin].program_start = data.program_start || '';
+      STUDENTS[pin].program_end = data.program_end || '';
     }
   } catch(e) { /* ملف غير موجود */ }
 }
@@ -2249,7 +2265,23 @@ async function upsertToSupabase(pin, studentData) {
       grade:    studentData.grade,
       phone:    studentData.phone || '',
       plan:     studentData.plan     || [],
-      followup: studentData.followup || []
+      followup: studentData.followup || [],
+      birthdate:  studentData.birthdate || '',
+      nationality:  studentData.nationality || '',
+      age:  studentData.age || '',
+      address:  studentData.address || '',
+      iq:  studentData.iq || '',
+      sibling_order:  studentData.sibling_order || '',
+      economic_level:  studentData.economic_level || '',
+      father_edu:  studentData.father_edu || '',
+      mother_edu:  studentData.mother_edu || '',
+      status_psych:  studentData.status_psych || '',
+      status_social:  studentData.status_social || '',
+      status_health:  studentData.status_health || '',
+      diagnosis:  studentData.diagnosis || '',
+      program_place:  studentData.program_place || '',
+      program_start:  studentData.program_start || '',
+      program_end:  studentData.program_end || '',
     });
     const blob = new Blob([jsonStr], {type: 'application/json'});
     const res = await fetch(`${SB_URL}/storage/v1/object/reports/yaseer/data/student-${pin}.json`, {
